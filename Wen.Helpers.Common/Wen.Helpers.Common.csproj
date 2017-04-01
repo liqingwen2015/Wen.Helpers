@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.104.0\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -72,6 +73,7 @@
     <Compile Include="RandomHelper.cs" />
     <Compile Include="RegularExpressionHelper.cs" />
     <Compile Include="SecurityHelper.cs" />
+    <Compile Include="SqlHelepr.cs" />
     <Compile Include="SqLiteHelper.cs" />
   </ItemGroup>
   <ItemGroup>

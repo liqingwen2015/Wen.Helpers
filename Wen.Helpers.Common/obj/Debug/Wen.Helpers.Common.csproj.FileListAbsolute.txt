@@ -1,0 +1,14 @@
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Wen.Helpers.Common.dll.config
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Wen.Helpers.Common.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Wen.Helpers.Common.pdb
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\EntityFramework.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\System.Data.SQLite.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\EntityFramework.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\System.Data.SQLite.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.csprojResolveAssemblyReference.cache
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.pdb
