@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace Wen.Helpers.Common
 {
     /// <summary>
-    /// 数据库 Helper
+    /// SqlHelper
     /// </summary>
-    public class SqlHelepr
+    public class SqlHelper
     {
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["TestDb"].ToString();
 

@@ -73,7 +73,7 @@
     <Compile Include="RandomHelper.cs" />
     <Compile Include="RegularExpressionHelper.cs" />
     <Compile Include="SecurityHelper.cs" />
-    <Compile Include="SqlHelepr.cs" />
+    <Compile Include="SqlHelper.cs" />
     <Compile Include="SqLiteHelper.cs" />
   </ItemGroup>
   <ItemGroup>
