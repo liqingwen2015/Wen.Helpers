@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.Common", "Wen.Helpers.Common\Wen.Helpers.Common.csproj", "{A941262E-F4B4-4AB5-ABE5-317F3164E78A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.ConsoleApp", "Wen.Helpers.ConsoleApp\Wen.Helpers.ConsoleApp.csproj", "{64121892-0E3E-4AA7-9578-351242E4ABDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A941262E-F4B4-4AB5-ABE5-317F3164E78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A941262E-F4B4-4AB5-ABE5-317F3164E78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A941262E-F4B4-4AB5-ABE5-317F3164E78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64121892-0E3E-4AA7-9578-351242E4ABDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64121892-0E3E-4AA7-9578-351242E4ABDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64121892-0E3E-4AA7-9578-351242E4ABDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64121892-0E3E-4AA7-9578-351242E4ABDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

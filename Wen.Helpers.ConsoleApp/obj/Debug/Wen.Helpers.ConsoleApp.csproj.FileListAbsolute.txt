@@ -1,0 +1,12 @@
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\Wen.Helpers.ConsoleApp.exe.config
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\Wen.Helpers.ConsoleApp.exe
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\Wen.Helpers.ConsoleApp.pdb
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\StackExchange.Redis.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\Wen.Helpers.Common.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\System.Data.SQLite.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\Wen.Helpers.Common.pdb
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\StackExchange.Redis.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\System.Data.SQLite.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.exe
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.pdb

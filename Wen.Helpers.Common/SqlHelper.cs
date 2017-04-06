@@ -36,7 +36,6 @@ namespace Wen.Helpers.Common
 
                 return dataSet.Tables[0];
             }
-
         }
 
         /// <summary>
@@ -67,11 +66,11 @@ namespace Wen.Helpers.Common
         public static SqlDataReader ExecuteDataReader(string sql, CommandType commandType = CommandType.Text, params SqlParameter[] parameters)
         {
             var conn = new SqlConnection(ConnectionString);
-            
-                var cmd = CreateSqlCommand(conn, sql, commandType, parameters);
-                conn.Open();
 
-                return cmd.ExecuteReader(CommandBehavior.CloseConnection);   
+            var cmd = CreateSqlCommand(conn, sql, commandType, parameters);
+            conn.Open();
+
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         /// <summary>
