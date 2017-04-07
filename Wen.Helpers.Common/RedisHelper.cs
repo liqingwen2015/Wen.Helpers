@@ -26,7 +26,7 @@ namespace Wen.Helpers.Common
         /// <summary>
         /// redis 连接对象
         /// </summary>
-        private static readonly IConnectionMultiplexer ConnMultiplexer;
+        private static IConnectionMultiplexer _connMultiplexer;
 
         /// <summary>
         /// 默认的 Key 值（用来当作 RedisKey 的前缀）
@@ -49,16 +49,16 @@ namespace Wen.Helpers.Common
         /// <returns></returns>
         public IConnectionMultiplexer GetConnectionRedisMultiplexer()
         {
-            if ((ConnMultiplexer == null) || !ConnMultiplexer.IsConnected)
+            if ((_connMultiplexer == null) || !_connMultiplexer.IsConnected)
             {
                 lock (Locker)
                 {
-                    if ((ConnMultiplexer == null) || !ConnMultiplexer.IsConnected)
-                        ConnectionMultiplexer.Connect(ConnectionString);
+                    if ((_connMultiplexer == null) || !_connMultiplexer.IsConnected)
+                        _connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
                 }
             }
 
-            return ConnMultiplexer;
+            return _connMultiplexer;
         }
 
         #region 其它
@@ -75,14 +75,14 @@ namespace Wen.Helpers.Common
         static RedisHelper()
         {
             ConnectionString = ConfigurationManager.ConnectionStrings["RedisConnectionString"].ConnectionString;
-            ConnMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
+            _connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
             DefaultKey = ConfigurationManager.AppSettings["Redis.DefaultKey"];
             AddRegisterEvent();
         }
 
         public RedisHelper(int db = -1)
         {
-            _db = ConnMultiplexer.GetDatabase(db);
+            _db = _connMultiplexer.GetDatabase(db);
         }
 
         #endregion 构造函数
@@ -1019,7 +1019,7 @@ namespace Wen.Helpers.Common
         /// <param name="handle"></param>
         public void Subscribe(RedisChannel channel, Action<RedisChannel, RedisValue> handle)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             sub.Subscribe(channel, handle);
         }
 
@@ -1031,7 +1031,7 @@ namespace Wen.Helpers.Common
         /// <returns></returns>
         public long Publish(RedisChannel channel, RedisValue message)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             return sub.Publish(channel, message);
         }
 
@@ -1044,7 +1044,7 @@ namespace Wen.Helpers.Common
         /// <returns></returns>
         public long Publish<T>(RedisChannel channel, T message)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             return sub.Publish(channel, Serialize(message));
         }
 
@@ -1057,7 +1057,7 @@ namespace Wen.Helpers.Common
         /// <param name="handle"></param>
         public async Task SubscribeAsync(RedisChannel channel, Action<RedisChannel, RedisValue> handle)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             await sub.SubscribeAsync(channel, handle);
         }
 
@@ -1069,7 +1069,7 @@ namespace Wen.Helpers.Common
         /// <returns></returns>
         public async Task<long> PublishAsync(RedisChannel channel, RedisValue message)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             return await sub.PublishAsync(channel, message);
         }
 
@@ -1082,7 +1082,7 @@ namespace Wen.Helpers.Common
         /// <returns></returns>
         public async Task<long> PublishAsync<T>(RedisChannel channel, T message)
         {
-            var sub = ConnMultiplexer.GetSubscriber();
+            var sub = _connMultiplexer.GetSubscriber();
             return await sub.PublishAsync(channel, Serialize(message));
         }
 
@@ -1109,13 +1109,13 @@ namespace Wen.Helpers.Common
         /// </summary>
         private static void AddRegisterEvent()
         {
-            ConnMultiplexer.ConnectionRestored += ConnMultiplexer_ConnectionRestored;
-            ConnMultiplexer.ConnectionFailed += ConnMultiplexer_ConnectionFailed;
-            ConnMultiplexer.ErrorMessage += ConnMultiplexer_ErrorMessage;
-            ConnMultiplexer.ConfigurationChanged += ConnMultiplexer_ConfigurationChanged;
-            ConnMultiplexer.HashSlotMoved += ConnMultiplexer_HashSlotMoved;
-            ConnMultiplexer.InternalError += ConnMultiplexer_InternalError;
-            ConnMultiplexer.ConfigurationChangedBroadcast += ConnMultiplexer_ConfigurationChangedBroadcast;
+            _connMultiplexer.ConnectionRestored += ConnMultiplexer_ConnectionRestored;
+            _connMultiplexer.ConnectionFailed += ConnMultiplexer_ConnectionFailed;
+            _connMultiplexer.ErrorMessage += ConnMultiplexer_ErrorMessage;
+            _connMultiplexer.ConfigurationChanged += ConnMultiplexer_ConfigurationChanged;
+            _connMultiplexer.HashSlotMoved += ConnMultiplexer_HashSlotMoved;
+            _connMultiplexer.InternalError += ConnMultiplexer_InternalError;
+            _connMultiplexer.ConfigurationChangedBroadcast += ConnMultiplexer_ConfigurationChangedBroadcast;
         }
 
         /// <summary>
