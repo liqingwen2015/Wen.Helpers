@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using StackExchange.Redis;
+using Wen.Helpers.Common.Enums;
 
 #endregion
 
@@ -50,13 +51,11 @@ namespace Wen.Helpers.Common
         public IConnectionMultiplexer GetConnectionRedisMultiplexer()
         {
             if ((_connMultiplexer == null) || !_connMultiplexer.IsConnected)
-            {
                 lock (Locker)
                 {
                     if ((_connMultiplexer == null) || !_connMultiplexer.IsConnected)
                         _connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
                 }
-            }
 
             return _connMultiplexer;
         }
@@ -571,11 +570,13 @@ namespace Wen.Helpers.Common
         /// 返回在该列表上键所对应的元素
         /// </summary>
         /// <param name="redisKey"></param>
+        /// <param name="start"></param>
+        /// <param name="stop"></param>
         /// <returns></returns>
-        public IEnumerable<RedisValue> ListRange(string redisKey)
+        public IEnumerable<string> ListRange(string redisKey, long start = 0L, long stop = -1L)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.ListRange(redisKey);
+            return _db.ListRange(redisKey, start, stop).Select(x => x.ToString());
         }
 
         /// <summary>
@@ -699,11 +700,14 @@ namespace Wen.Helpers.Common
         /// 返回在该列表上键所对应的元素
         /// </summary>
         /// <param name="redisKey"></param>
+        /// <param name="start"></param>
+        /// <param name="stop"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<RedisValue>> ListRangeAsync(string redisKey)
+        public async Task<IEnumerable<string>> ListRangeAsync(string redisKey, long start = 0L, long stop = -1L)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return await _db.ListRangeAsync(redisKey);
+            var query = await _db.ListRangeAsync(redisKey, start, stop);
+            return query.Select(x => x.ToString());
         }
 
         /// <summary>
@@ -775,11 +779,14 @@ namespace Wen.Helpers.Common
         /// 在有序集合中返回指定范围的元素，默认情况下从低到高。
         /// </summary>
         /// <param name="redisKey"></param>
+        /// <param name="start"></param>
+        /// <param name="stop"></param>
+        /// <param name="order"></param>
         /// <returns></returns>
-        public IEnumerable<RedisValue> SortedSetRangeByRank(string redisKey)
+        public IEnumerable<string> SortedSetRangeByRank(string redisKey, long start = 0L, long stop = -1L, RedisOrderType order = RedisOrderType.Ascending)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetRangeByRank(redisKey);
+            return _db.SortedSetRangeByRank(redisKey, start, stop, (Order)order).Select(x => x.ToString());
         }
 
         /// <summary>
@@ -818,6 +825,19 @@ namespace Wen.Helpers.Common
             var json = Serialize(member);
 
             return _db.SortedSetAdd(redisKey, json, score);
+        }
+
+        /// <summary>
+        /// 增量的得分排序的集合中的成员存储键值键按增量
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="member"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public double SortedSetIncrement(string redisKey, string member, double value = 1)
+        {
+            redisKey = AddKeyPrefix(redisKey);
+            return _db.SortedSetIncrement(redisKey, member, value);
         }
 
         #region SortedSet-Async
@@ -882,6 +902,19 @@ namespace Wen.Helpers.Common
             var json = Serialize(member);
 
             return await _db.SortedSetAddAsync(redisKey, json, score);
+        }
+
+        /// <summary>
+        /// 增量的得分排序的集合中的成员存储键值键按增量
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="member"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public Task<double> SortedSetIncrementAsync(string redisKey, string member, double value = 1)
+        {
+            redisKey = AddKeyPrefix(redisKey);
+            return _db.SortedSetIncrementAsync(redisKey, member, value);
         }
 
         #endregion SortedSet-Async
@@ -1230,5 +1263,6 @@ namespace Wen.Helpers.Common
         }
 
         #endregion private method
+
     }
 }

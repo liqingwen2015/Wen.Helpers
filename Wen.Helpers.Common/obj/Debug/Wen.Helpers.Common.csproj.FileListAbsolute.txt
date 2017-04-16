@@ -15,4 +15,3 @@ C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\De
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\StackExchange.Redis.xml
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.csprojResolveAssemblyReference.cache
