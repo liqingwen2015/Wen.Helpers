@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wen.Helpers.Common;
+using Wen.Helpers.Common.Npoi;
 
 namespace Wen.Helpers.ConsoleApp
 {
@@ -11,12 +12,24 @@ namespace Wen.Helpers.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var redis = new RedisHelper(12);
-            redis.StringSet("test1:test2", new Student() { Id = 1, Name = "Wen" });
-            var data = redis.StringGet<Student>("test");
-            Console.WriteLine($"{data.Id} {data.Name}");
-            Console.WriteLine("ok");
+            var columnNames = new List<string>()
+            {
+                "Id",
+                "Name"
+            };
 
+            var students = new List<Student>();
+            for (int i = 0; i < 10; i++)
+            {
+                students.Add(new Student()
+                {
+                    Id = i + 1,
+                    Name = i.ToString()
+                });
+            }
+
+            NpoiHelepr.WriteExcel("01", columnNames, students, @"E:\== Temp ==\1.xlsx");
+            Console.WriteLine("OK");
             Console.Read();
         }
     }

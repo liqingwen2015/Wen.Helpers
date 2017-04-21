@@ -10,3 +10,9 @@ C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bi
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.csprojResolveAssemblyReference.cache
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.exe
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.pdb
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.OOXML.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.OpenXml4Net.dll

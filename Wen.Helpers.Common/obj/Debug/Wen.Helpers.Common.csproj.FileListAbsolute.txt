@@ -15,3 +15,10 @@ C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\De
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\StackExchange.Redis.xml
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.OOXML.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.xml
+C:\Users\Wen\Documents\Projects\OpenSource\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.csprojResolveAssemblyReference.cache
