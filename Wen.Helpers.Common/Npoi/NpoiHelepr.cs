@@ -40,12 +40,12 @@ namespace Wen.Helpers.Common.Npoi
         {
             if (string.IsNullOrEmpty(sheetName))
             {
-                return;
+                throw new Exception("sheetName 不能为空");
             }
 
             if (string.IsNullOrEmpty(filePath))
             {
-                return;
+                throw new Exception("filePath 不能为空");
             }
 
             var dataArr = data as T[] ?? data.ToArray();
@@ -54,10 +54,11 @@ namespace Wen.Helpers.Common.Npoi
                 return;
             }
 
+            var names = columnNames.ToArray();
             var book = new XSSFWorkbook();
             var sheet = book.CreateSheet(sheetName);
             var row = sheet.CreateRow(0);
-            var names = columnNames.ToArray();
+            
             PropertyInfo[] props = null;
 
             for (var i = 0; i < names.Length; i++)
