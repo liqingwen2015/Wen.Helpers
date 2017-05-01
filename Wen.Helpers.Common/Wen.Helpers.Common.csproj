@@ -94,19 +94,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheHelper.cs" />
-    <Compile Include="CookieHelper.cs" />
-    <Compile Include="Enums\EncodingType.cs" />
-    <Compile Include="Enums\RedisOrderType.cs" />
+    <Compile Include="Cache\CacheHelper.cs" />
+    <Compile Include="Cookie\CookieHelper.cs" />
+    <Compile Include="Extend\EncodingType.cs" />
+    <Compile Include="Redis\OrderType.cs" />
     <Compile Include="Extend\ExtensionMethod.cs" />
     <Compile Include="Npoi\NpoiHelepr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomHelper.cs" />
-    <Compile Include="RedisHelper.cs" />
-    <Compile Include="RegularExpressionHelper.cs" />
-    <Compile Include="SecurityHelper.cs" />
-    <Compile Include="SqlHelper.cs" />
-    <Compile Include="SqLiteHelper.cs" />
+    <Compile Include="Random\RandomHelper.cs" />
+    <Compile Include="Redis\RedisHelper.cs" />
+    <Compile Include="Regular\RegularExpressionHelper.cs" />
+    <Compile Include="Security\SecurityHelper.cs" />
+    <Compile Include="DB\SqlHelper.cs" />
+    <Compile Include="DB\SqLiteHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -2,7 +2,7 @@
 
 using System;
 using System.Text;
-using Wen.Helpers.Common.Enums;
+using Wen.Helpers.Common.Security;
 
 #endregion
 

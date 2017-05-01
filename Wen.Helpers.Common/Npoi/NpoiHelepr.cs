@@ -1,16 +1,10 @@
-﻿/*
- * WorkBook（工作薄），包含的叫页（工作表）：Sheet；行：Row；单元格Cell
- */
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -35,36 +29,29 @@ namespace Wen.Helpers.Common.Npoi
         /// HSSFWorkbook:是操作Excel2003以前（包括2003）的版本，扩展名是.xls；
         /// XSSFWorkbook:是操作Excel2007的版本，扩展名是.xlsx；
         /// </remarks>
-        public static void WriteExcel<T>(string sheetName, IEnumerable<string> columnNames, IEnumerable<T> data, string filePath)
+        public static void WriteExcel<T>(string sheetName, IEnumerable<string> columnNames, IEnumerable<T> data,
+            string filePath)
             where T : class, new()
         {
             if (string.IsNullOrEmpty(sheetName))
-            {
                 throw new Exception("sheetName 不能为空");
-            }
 
             if (string.IsNullOrEmpty(filePath))
-            {
                 throw new Exception("filePath 不能为空");
-            }
 
             var dataArr = data as T[] ?? data.ToArray();
             if (!dataArr.Any())
-            {
                 return;
-            }
 
             var names = columnNames.ToArray();
             var book = new XSSFWorkbook();
             var sheet = book.CreateSheet(sheetName);
             var row = sheet.CreateRow(0);
-            
+
             PropertyInfo[] props = null;
 
             for (var i = 0; i < names.Length; i++)
-            {
                 row.CreateCell(i).SetCellValue(names[i]);
-            }
 
             for (var i = 0; i < dataArr.Length; i++)
             {
