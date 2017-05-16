@@ -43,6 +43,5 @@ C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\bin\D
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\bin\Debug\NPOI.xml
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\bin\Debug\StackExchange.Redis.xml
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\bin\Debug\System.Data.SQLite.xml
-C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.csprojResolveAssemblyReference.cache
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.dll
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.Common\obj\Debug\Wen.Helpers.Common.pdb

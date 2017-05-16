@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 using Wen.Helpers.Common.Security;
 
@@ -51,6 +52,9 @@ namespace Wen.Helpers.Common.Extend
                     break;
                 case EncodingType.Gb18030:
                     encoding = Encoding.GetEncoding("GB18030");
+                    break;
+                case EncodingType.None:
+                    encoding = Encoding.UTF8;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -259,5 +263,23 @@ namespace Wen.Helpers.Common.Extend
         #endregion 字符串加密：MD5（16Bit + 32Bit）、SHA1、SHA2（SHA224、SHA256、SHA384、SHA512）、HMAC 系列
 
         #endregion string
+
+        #region IEnumerable
+
+        /// <summary>
+        /// 对所有元素进行操作
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sequence"></param>
+        /// <param name="action"></param>
+        public static void ForAll<T>(this IEnumerable<T> sequence, Action<T> action)
+        {
+            foreach (var item in sequence)
+            {
+                action(item);
+            }
+        }
+
+        #endregion IEnumerable
     }
 }
