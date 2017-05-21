@@ -107,6 +107,7 @@
     <Compile Include="Security\SecurityHelper.cs" />
     <Compile Include="DB\SqlHelper.cs" />
     <Compile Include="DB\SqLiteHelper.cs" />
+    <Compile Include="Text\TextHelepr.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

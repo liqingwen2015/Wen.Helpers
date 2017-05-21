@@ -34,3 +34,10 @@ C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\b
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\System.Data.SQLite.xml
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\NPOI.xml
 C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\obj\Debug\Wen.Helpers.ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Bson.dll
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Driver.dll
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Bson.xml
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Driver.xml
+C:\Users\Wen\Documents\Projects\OpenSources\Wen.Helpers\Wen.Helpers.ConsoleApp\bin\Debug\MongoDB.Driver.Core.xml
