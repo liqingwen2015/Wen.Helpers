@@ -14,7 +14,9 @@ namespace Wen.Helpers.Common.DB
     /// </summary>
     public sealed class SqLiteHelper
     {
-        private static readonly string ConnectionStr = ConfigurationManager.ConnectionStrings["SqlLiteConnetionString"].ToString();
+        private static readonly string ConnectionStr =
+            ConfigurationManager.ConnectionStrings["SqlLiteConnetionString"].ToString();
+
         private static SqLiteHelper _instance;
         private static readonly object Locker = new object();
 

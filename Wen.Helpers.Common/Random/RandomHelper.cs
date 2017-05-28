@@ -1,10 +1,4 @@
-﻿#region
-
-
-
-#endregion
-
-namespace Wen.Helpers.Common.Random
+﻿namespace Wen.Helpers.Common.Random
 {
     /// <summary>
     /// 随机数助手

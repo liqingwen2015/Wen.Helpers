@@ -15,7 +15,8 @@ namespace Wen.Helpers.Common.DB
     /// </summary>
     public class SqlHelper
     {
-        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["SqlConnetionString"].ToString();
+        private static readonly string ConnectionString =
+            ConfigurationManager.ConnectionStrings["SqlConnetionString"].ToString();
 
         /// <summary>
         /// 执行查询并返回 DataTable 数据集

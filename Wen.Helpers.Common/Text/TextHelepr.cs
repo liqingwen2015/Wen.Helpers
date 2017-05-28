@@ -1,9 +1,9 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace Wen.Helpers.Common.Text
 {
@@ -24,16 +24,10 @@ namespace Wen.Helpers.Common.Text
             var words = Regex.Split(content, @"\W+");
 
             foreach (var word in words)
-            {
                 if (!dict.ContainsKey(word))
-                {
                     dict[word] = 1;
-                }
                 else
-                {
                     dict[word]++;
-                }
-            }
 
             return dict;
         }

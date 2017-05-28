@@ -18,6 +18,31 @@ namespace Wen.Helpers.Common.Redis
     /// </summary>
     public class RedisHelper
     {
+        /// <summary>
+        /// 获取 Redis 连接对象
+        /// </summary>
+        /// <returns></returns>
+        public IConnectionMultiplexer GetConnectionRedisMultiplexer()
+        {
+            if (_connMultiplexer == null || !_connMultiplexer.IsConnected)
+                lock (Locker)
+                {
+                    if (_connMultiplexer == null || !_connMultiplexer.IsConnected)
+                        _connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
+                }
+
+            return _connMultiplexer;
+        }
+
+        #region 其它
+
+        public ITransaction GetTransaction()
+        {
+            return _db.CreateTransaction();
+        }
+
+        #endregion 其它
+
         #region private field
 
         /// <summary>
@@ -46,31 +71,6 @@ namespace Wen.Helpers.Common.Redis
         private readonly IDatabase _db;
 
         #endregion private field
-
-        /// <summary>
-        /// 获取 Redis 连接对象
-        /// </summary>
-        /// <returns></returns>
-        public IConnectionMultiplexer GetConnectionRedisMultiplexer()
-        {
-            if (_connMultiplexer == null || !_connMultiplexer.IsConnected)
-                lock (Locker)
-                {
-                    if (_connMultiplexer == null || !_connMultiplexer.IsConnected)
-                        _connMultiplexer = ConnectionMultiplexer.Connect(ConnectionString);
-                }
-
-            return _connMultiplexer;
-        }
-
-        #region 其它
-
-        public ITransaction GetTransaction()
-        {
-            return _db.CreateTransaction();
-        }
-
-        #endregion 其它
 
         #region 构造函数
 
@@ -257,7 +257,7 @@ namespace Wen.Helpers.Common.Redis
         public long HashDelete(string redisKey, IEnumerable<string> hashFields)
         {
             redisKey = AddKeyPrefix(redisKey);
-            var fields = hashFields.Select(x => (RedisValue)x);
+            var fields = hashFields.Select(x => (RedisValue) x);
 
             return _db.HashDelete(redisKey, fields.ToArray());
         }
@@ -309,7 +309,7 @@ namespace Wen.Helpers.Common.Redis
         public IEnumerable<string> HashGet(string redisKey, IEnumerable<string> hashFields)
         {
             redisKey = AddKeyPrefix(redisKey);
-            var fields = hashFields.Select(x => (RedisValue)x);
+            var fields = hashFields.Select(x => (RedisValue) x);
 
             return ConvertStrings(_db.HashGet(redisKey, fields.ToArray()));
         }
@@ -399,7 +399,7 @@ namespace Wen.Helpers.Common.Redis
         public async Task<long> HashDeleteAsync(string redisKey, IEnumerable<string> hashFields)
         {
             redisKey = AddKeyPrefix(redisKey);
-            var fields = hashFields.Select(x => (RedisValue)x);
+            var fields = hashFields.Select(x => (RedisValue) x);
 
             return await _db.HashDeleteAsync(redisKey, fields.ToArray());
         }
@@ -448,10 +448,11 @@ namespace Wen.Helpers.Common.Redis
         /// <param name="hashFields"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<string>> HashGetAsync(string redisKey, IEnumerable<string> hashFields, string value)
+        public async Task<IEnumerable<string>> HashGetAsync(string redisKey, IEnumerable<string> hashFields,
+            string value)
         {
             redisKey = AddKeyPrefix(redisKey);
-            var fields = hashFields.Select(x => (RedisValue)x);
+            var fields = hashFields.Select(x => (RedisValue) x);
 
             return ConvertStrings(await _db.HashGetAsync(redisKey, fields.ToArray()));
         }
@@ -800,7 +801,7 @@ namespace Wen.Helpers.Common.Redis
             OrderType order = OrderType.Ascending)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return _db.SortedSetRangeByRank(redisKey, start, stop, (Order)order).Select(x => x.ToString());
+            return _db.SortedSetRangeByRank(redisKey, start, stop, (Order) order).Select(x => x.ToString());
         }
 
         /// <summary>
@@ -955,7 +956,7 @@ namespace Wen.Helpers.Common.Redis
         /// <returns></returns>
         public long KeyDelete(IEnumerable<string> redisKeys)
         {
-            var keys = redisKeys.Select(x => (RedisKey)AddKeyPrefix(x));
+            var keys = redisKeys.Select(x => (RedisKey) AddKeyPrefix(x));
             return _db.KeyDelete(keys.ToArray());
         }
 
@@ -1014,7 +1015,7 @@ namespace Wen.Helpers.Common.Redis
         /// <returns></returns>
         public async Task<long> KeyDeleteAsync(IEnumerable<string> redisKeys)
         {
-            var keys = redisKeys.Select(x => (RedisKey)AddKeyPrefix(x));
+            var keys = redisKeys.Select(x => (RedisKey) AddKeyPrefix(x));
             return await _db.KeyDeleteAsync(keys.ToArray());
         }
 
@@ -1283,7 +1284,7 @@ namespace Wen.Helpers.Common.Redis
             var binaryFormatter = new BinaryFormatter();
             using (var memoryStream = new MemoryStream(data))
             {
-                var result = (T)binaryFormatter.Deserialize(memoryStream);
+                var result = (T) binaryFormatter.Deserialize(memoryStream);
                 return result;
             }
         }

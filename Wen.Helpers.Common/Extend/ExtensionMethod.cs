@@ -65,6 +65,22 @@ namespace Wen.Helpers.Common.Extend
 
         #endregion private
 
+        #region IEnumerable
+
+        /// <summary>
+        /// 对所有元素进行操作
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sequence"></param>
+        /// <param name="action"></param>
+        public static void ForAll<T>(this IEnumerable<T> sequence, Action<T> action)
+        {
+            foreach (var item in sequence)
+                action(item);
+        }
+
+        #endregion IEnumerable
+
         #region string
 
         /// <summary>
@@ -263,23 +279,5 @@ namespace Wen.Helpers.Common.Extend
         #endregion 字符串加密：MD5（16Bit + 32Bit）、SHA1、SHA2（SHA224、SHA256、SHA384、SHA512）、HMAC 系列
 
         #endregion string
-
-        #region IEnumerable
-
-        /// <summary>
-        /// 对所有元素进行操作
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sequence"></param>
-        /// <param name="action"></param>
-        public static void ForAll<T>(this IEnumerable<T> sequence, Action<T> action)
-        {
-            foreach (var item in sequence)
-            {
-                action(item);
-            }
-        }
-
-        #endregion IEnumerable
     }
 }
