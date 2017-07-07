@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 using Wen.Helpers.Common.Security;
 
 #endregion
@@ -277,6 +278,27 @@ namespace Wen.Helpers.Common.Extend
         #endregion HMAC 系列（MD5, SHA1, SHA2）
 
         #endregion 字符串加密：MD5（16Bit + 32Bit）、SHA1、SHA2（SHA224、SHA256、SHA384、SHA512）、HMAC 系列
+
+        /// <summary>
+        /// 转换成 Json
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static dynamic ToJson(this string self)
+        {
+            return JsonConvert.DeserializeObject<dynamic>(self);
+        }
+
+        /// <summary>
+        /// 转换成 Json
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static T ToJson<T>(this string self)
+        {
+            return JsonConvert.DeserializeObject<T>(self);
+        }
 
         #endregion string
     }

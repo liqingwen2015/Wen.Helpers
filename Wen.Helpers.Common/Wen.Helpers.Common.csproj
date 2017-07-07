@@ -44,6 +44,10 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.104.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data" />
@@ -89,6 +94,8 @@
     <Compile Include="Cache\CacheHelper.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Extend\EncodingType.cs" />
+    <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\ValidateCodeHelper.cs" />
     <Compile Include="Redis\OrderType.cs" />
     <Compile Include="Extend\ExtensionMethod.cs" />
     <Compile Include="Npoi\NpoiHelepr.cs" />
