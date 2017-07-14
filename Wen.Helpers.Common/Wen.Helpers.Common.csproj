@@ -102,11 +102,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Random\RandomHelper.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
+    <Compile Include="Regular\RegularExpression2Helper.cs" />
     <Compile Include="Regular\RegularExpressionHelper.cs" />
     <Compile Include="Security\SecurityHelper.cs" />
     <Compile Include="DB\SqlHelper.cs" />
     <Compile Include="DB\SqLiteHelper.cs" />
-    <Compile Include="Text\TextHelepr.cs" />
+    <Compile Include="Text\TextHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Wen.Helpers.Common.Security;
 
@@ -298,6 +299,29 @@ namespace Wen.Helpers.Common.Extend
         public static T ToJson<T>(this string self)
         {
             return JsonConvert.DeserializeObject<T>(self);
+        }
+
+        /// <summary>
+        /// 是否匹配
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static bool IsMatch(this string self, string pattern)
+        {
+            return !string.IsNullOrEmpty(self) && Regex.IsMatch(self, pattern);
+        }
+
+        /// <summary>
+        /// 是否匹配
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static bool IsMatch(this string self,string pattern, RegexOptions options)
+        {
+            return !string.IsNullOrEmpty(self) && Regex.IsMatch(self, pattern, options);
         }
 
         #endregion string

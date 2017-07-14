@@ -10,7 +10,7 @@ namespace Wen.Helpers.Common.Text
     /// <summary>
     /// 文本助手
     /// </summary>
-    public static class TextHelepr
+    public static class TextHelper
     {
         /// <summary>
         /// 统计单词出现的次数
