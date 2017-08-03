@@ -1,6 +1,4 @@
-/Wen.Helpers.Common/obj
-/Wen.Helpers.Common/bin
-/Wen.Helpers.ConsoleApp/obj
-/Wen.Helpers.ConsoleApp/bin
-/.vs
-/Wen.Helpers.ConsoleApp/obj/Debug/*.cache
+*/obj
+*/bin
+*/.vs
+*/*.cache
