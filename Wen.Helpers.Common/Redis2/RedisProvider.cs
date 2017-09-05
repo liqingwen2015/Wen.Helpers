@@ -1,11 +1,27 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 
 namespace Wen.Helpers.Common.Redis2
 {
-    internal class RedisProvider
+    public class RedisProvider
     {
+        #region protected field
+
+        /// <summary>
+        /// redis 连接对象
+        /// </summary>
+        private readonly IConnectionMultiplexer _connMultiplexer;
+
+        #endregion protected field
+
+        public RedisProvider(string connectionString = null)
+        {
+            _connMultiplexer = RedisConnection.GetConnectionMultiplexer(connectionString);
+        }
+
         #region 发布订阅
 
         /// <summary>
@@ -85,5 +101,24 @@ namespace Wen.Helpers.Common.Redis2
         #endregion 发布订阅-async
 
         #endregion 发布订阅
+
+        /// <summary>
+        /// 序列化
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private static byte[] Serialize(object obj)
+        {
+            if (obj == null)
+                return null;
+
+            var binaryFormatter = new BinaryFormatter();
+            using (var memoryStream = new MemoryStream())
+            {
+                binaryFormatter.Serialize(memoryStream, obj);
+                var data = memoryStream.ToArray();
+                return data;
+            }
+        }
     }
 }

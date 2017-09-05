@@ -1,83 +1,48 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 
-#endregion
-
 namespace Wen.Helpers.Common.Redis2.Product
 {
-    /// <summary>
-    /// Redis 字符串
-    /// </summary>
-    public partial class RedisString : RedisProduct
+    public partial class RedisString
     {
-        #region ctor
-
         /// <summary>
-        /// 默认构造函数（所有选项取默认值）
-        /// </summary>
-        public RedisString() : this(null, -1, null)
-        {
-
-        }
-
-        public RedisString(int db = -1) : this(null, db)
-        {
-
-        }
-
-        public RedisString(string connectionString = null, int db = -1) :
-            this(connectionString, db, null)
-        {
-
-        }
-
-        public RedisString(string connectionString = null, int db = -1, string keyPrefix = null) :
-            base(connectionString, db, keyPrefix)
-        {
-
-        }
-
-        #endregion ctor
-
-        /// <summary>
-        /// 设置 key 并保存字符串（如果 key 已存在，则覆盖值）
+        /// 保存一个字符串值
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public bool Set(string redisKey, string redisValue, TimeSpan? expiry = null)
+        public async Task<bool> SetAsync(string redisKey, string redisValue, TimeSpan? expiry = null)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return Db.StringSet(redisKey, redisValue, expiry);
+            return await Db.StringSetAsync(redisKey, redisValue, expiry);
         }
 
         /// <summary>
-        /// 保存多个 Key-value
+        /// 保存一组字符串值
         /// </summary>
         /// <param name="keyValuePairs"></param>
         /// <returns></returns>
-        public bool Set(IEnumerable<KeyValuePair<string, string>> keyValuePairs)
+        public async Task<bool> SetAsync(IEnumerable<KeyValuePair<string, string>> keyValuePairs)
         {
             var pairs = keyValuePairs.Select(x => new KeyValuePair<RedisKey, RedisValue>(AddKeyPrefix(x.Key), x.Value));
-            return Db.StringSet(pairs.ToArray());
+            return await Db.StringSetAsync(pairs.ToArray());
         }
 
         /// <summary>
-        /// 获取字符串
+        /// 获取单个值
         /// </summary>
         /// <param name="redisKey"></param>
+        /// <param name="redisValue"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public string Get(string redisKey, TimeSpan? expiry = null)
+        public async Task<string> GetAsync(string redisKey, string redisValue, TimeSpan? expiry = null)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return Db.StringGet(redisKey);
+            return await Db.StringGetAsync(redisKey);
         }
 
         /// <summary>
@@ -87,11 +52,11 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisValue"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public bool Set<T>(string redisKey, T redisValue, TimeSpan? expiry = null)
+        public async Task<bool> SetAsync<T>(string redisKey, T redisValue, TimeSpan? expiry = null)
         {
             redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(redisValue);
-            return Db.StringSet(redisKey, json, expiry);
+            return await Db.StringSetAsync(redisKey, json, expiry);
         }
 
         /// <summary>
@@ -100,10 +65,10 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public T Get<T>(string redisKey, TimeSpan? expiry = null)
+        public async Task<T> GetAsync<T>(string redisKey, TimeSpan? expiry = null)
         {
             redisKey = AddKeyPrefix(redisKey);
-            return Deserialize<T>(Db.StringGet(redisKey));
+            return Deserialize<T>(await Db.StringGetAsync(redisKey));
         }
     }
 }

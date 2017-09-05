@@ -5,14 +5,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 using Wen.Helpers.Common.Redis;
-using Wen.Helpers.Common.Redis2.Product;
 
 #endregion
 
-namespace Wen.Helpers.Common.Redis2
+namespace Wen.Helpers.Common.Redis2.Product
 {
     public class RedisSortedSet : RedisProduct
     {
+        #region ctor
+
+        /// <summary>
+        /// 默认构造函数（所有选项取默认值）
+        /// </summary>
+        public RedisSortedSet() : this(null, -1, null, null)
+        {
+
+        }
+
+        public RedisSortedSet(int db = -1) : this(null, db)
+        {
+
+        }
+
+        public RedisSortedSet(string connectionString = null, int db = -1) :
+            this(connectionString, db, null)
+        {
+
+        }
+
+        public RedisSortedSet(string connectionString = null, int db = -1, string keyPrefix = null) :
+            base(connectionString, db, keyPrefix)
+        {
+
+        }
+
+
+        #endregion ctor
+
         /// <summary>
         /// SortedSet 新增
         /// </summary>
@@ -22,7 +51,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public bool SortedSetAdd(string redisKey, string member, double score)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetAdd(redisKey, member, score);
         }
 
@@ -37,7 +66,7 @@ namespace Wen.Helpers.Common.Redis2
         public IEnumerable<string> SortedSetRangeByRank(string redisKey, long start = 0L, long stop = -1L,
             OrderType order = OrderType.Ascending)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetRangeByRank(redisKey, start, stop, (Order) order).Select(x => x.ToString());
         }
 
@@ -48,7 +77,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public long SortedSetLength(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetLength(redisKey);
         }
 
@@ -60,7 +89,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public bool SortedSetLength(string redisKey, string memebr)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetRemove(redisKey, memebr);
         }
 
@@ -73,7 +102,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public bool SortedSetAdd<T>(string redisKey, T member, double score)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(member);
 
             return Db.SortedSetAdd(redisKey, json, score);
@@ -88,7 +117,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public double SortedSetIncrement(string redisKey, string member, double value = 1)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetIncrement(redisKey, member, value);
         }
 
@@ -103,7 +132,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public async Task<bool> SortedSetAddAsync(string redisKey, string member, double score)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.SortedSetAddAsync(redisKey, member, score);
         }
 
@@ -114,8 +143,8 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public async Task<IEnumerable<string>> SortedSetRangeByRankAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(await Db.SortedSetRangeByRankAsync(redisKey));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(await Db.SortedSetRangeByRankAsync(redisKey));
         }
 
         /// <summary>
@@ -125,7 +154,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public async Task<long> SortedSetLengthAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.SortedSetLengthAsync(redisKey);
         }
 
@@ -137,7 +166,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public async Task<bool> SortedSetRemoveAsync(string redisKey, string memebr)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.SortedSetRemoveAsync(redisKey, memebr);
         }
 
@@ -150,7 +179,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public async Task<bool> SortedSetAddAsync<T>(string redisKey, T member, double score)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(member);
 
             return await Db.SortedSetAddAsync(redisKey, json, score);
@@ -165,7 +194,7 @@ namespace Wen.Helpers.Common.Redis2
         /// <returns></returns>
         public Task<double> SortedSetIncrementAsync(string redisKey, string member, double value = 1)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.SortedSetIncrementAsync(redisKey, member, value);
         }
 

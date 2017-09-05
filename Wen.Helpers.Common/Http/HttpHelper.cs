@@ -32,7 +32,9 @@ namespace Wen.Helpers.Common.Http
                 encoding = encoding ?? DefaultEncoding;
 
                 if (string.IsNullOrEmpty(url))
+                {
                     throw new Exception("url 为空！");
+                }
 
                 using (var webClient = new WebClient())
                 {
@@ -59,10 +61,14 @@ namespace Wen.Helpers.Common.Http
         public static async Task<string> GetAsync(string url, IDictionary<string, string> paramDictionary, Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(url))
-                throw new Exception("url 为空！");
+            {
+                return "";
+            }
 
             if (paramDictionary == null)
+            {
                 return await GetAsync(url);
+            }
 
             //参数转字符串
             var paramString = paramDictionary.Aggregate("", (current, param) => current + (param.Key + "=" + param.Value));
@@ -80,10 +86,14 @@ namespace Wen.Helpers.Common.Http
         public static async Task<string> GetAsync(string url, string paramString, Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(url))
-                throw new Exception("url 为空！");
+            {
+                return "";
+            }
 
             if (string.IsNullOrEmpty(paramString))
+            {
                 return await GetAsync(url);
+            }
 
             try
             {

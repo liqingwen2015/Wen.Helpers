@@ -3,22 +3,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Wen.Helpers.Common.Redis2.Product;
 
 #endregion
 
-namespace Wen.Helpers.Common.Redis2
+namespace Wen.Helpers.Common.Redis2.Product
 {
     public class RedisList : RedisProduct
     {
+        #region ctor
+
+        /// <summary>
+        /// 默认构造函数（所有选项取默认值）
+        /// </summary>
+        public RedisList() : this(null, -1, null, null)
+        {
+
+        }
+
+        public RedisList(int db = -1) : this(null, db)
+        {
+
+        }
+
+        public RedisList(string connectionString = null, int db = -1) :
+            this(connectionString, db, null, null)
+        {
+
+        }
+
+        public RedisList(string connectionString = null, int db = -1, string keyPrefix = null) :
+            this(connectionString, db, keyPrefix, null)
+        {
+
+        }
+
+        public RedisList(string connectionString = null, int db = -1, string keyPrefix = null, object asyncState = null) :
+            base(connectionString, db, keyPrefix, asyncState)
+        {
+
+        }
+
+        #endregion ctor
+
         /// <summary>
         /// 移除并返回存储在该键列表的第一个元素
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public string ListLeftPop(string redisKey)
+        public string LeftPop(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListLeftPop(redisKey);
         }
 
@@ -27,9 +61,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public string ListRightPop(string redisKey)
+        public string RightPop(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListRightPop(redisKey);
         }
 
@@ -39,9 +73,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public long ListRemove(string redisKey, string redisValue)
+        public long Remove(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListRemove(redisKey, redisValue);
         }
 
@@ -51,9 +85,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public long ListRightPush(string redisKey, string redisValue)
+        public long RightPush(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListRightPush(redisKey, redisValue);
         }
 
@@ -63,9 +97,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public long ListLeftPush(string redisKey, string redisValue)
+        public long LeftPush(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListLeftPush(redisKey, redisValue);
         }
 
@@ -74,9 +108,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public long ListLength(string redisKey)
+        public long Length(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListLength(redisKey);
         }
 
@@ -87,10 +121,10 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="start"></param>
         /// <param name="stop"></param>
         /// <returns></returns>
-        public IEnumerable<string> ListRange(string redisKey, long start = 0L, long stop = -1L)
+        public IEnumerable<string> Range(string redisKey, long start = 0L, long stop = -1L)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(Db.ListRange(redisKey, start, stop));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(Db.ListRange(redisKey, start, stop));
         }
 
         /// <summary>
@@ -98,9 +132,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public T ListLeftPop<T>(string redisKey)
+        public T LeftPop<T>(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Deserialize<T>(Db.ListLeftPop(redisKey));
         }
 
@@ -109,9 +143,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public T ListRightPop<T>(string redisKey)
+        public T RightPop<T>(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Deserialize<T>(Db.ListRightPop(redisKey));
         }
 
@@ -121,9 +155,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public long ListRightPush<T>(string redisKey, T redisValue)
+        public long RightPush<T>(string redisKey, T redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListRightPush(redisKey, Serialize(redisValue));
         }
 
@@ -133,9 +167,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public long ListLeftPush<T>(string redisKey, T redisValue)
+        public long LeftPush<T>(string redisKey, T redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.ListLeftPush(redisKey, Serialize(redisValue));
         }
 
@@ -146,9 +180,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public async Task<string> ListLeftPopAsync(string redisKey)
+        public async Task<string> LeftPopAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListLeftPopAsync(redisKey);
         }
 
@@ -157,9 +191,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public async Task<string> ListRightPopAsync(string redisKey)
+        public async Task<string> RightPopAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListRightPopAsync(redisKey);
         }
 
@@ -169,9 +203,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public async Task<long> ListRemoveAsync(string redisKey, string redisValue)
+        public async Task<long> RemoveAsync(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListRemoveAsync(redisKey, redisValue);
         }
 
@@ -181,9 +215,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public async Task<long> ListRightPushAsync(string redisKey, string redisValue)
+        public async Task<long> RightPushAsync(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListRightPushAsync(redisKey, redisValue);
         }
 
@@ -193,9 +227,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public async Task<long> ListLeftPushAsync(string redisKey, string redisValue)
+        public async Task<long> LeftPushAsync(string redisKey, string redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListLeftPushAsync(redisKey, redisValue);
         }
 
@@ -204,9 +238,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public async Task<long> ListLengthAsync(string redisKey)
+        public async Task<long> LengthAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListLengthAsync(redisKey);
         }
 
@@ -217,10 +251,11 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="start"></param>
         /// <param name="stop"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<string>> ListRangeAsync(string redisKey, long start = 0L, long stop = -1L)
+        public async Task<IEnumerable<string>> RangeAsync(string redisKey, long start = 0L, long stop = -1L)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var query = await Db.ListRangeAsync(redisKey, start, stop);
+
             return query.Select(x => x.ToString());
         }
 
@@ -229,9 +264,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public async Task<T> ListLeftPopAsync<T>(string redisKey)
+        public async Task<T> LeftPopAsync<T>(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Deserialize<T>(await Db.ListLeftPopAsync(redisKey));
         }
 
@@ -240,9 +275,9 @@ namespace Wen.Helpers.Common.Redis2
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public async Task<T> ListRightPopAsync<T>(string redisKey)
+        public async Task<T> RightPopAsync<T>(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Deserialize<T>(await Db.ListRightPopAsync(redisKey));
         }
 
@@ -252,9 +287,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public async Task<long> ListRightPushAsync<T>(string redisKey, T redisValue)
+        public async Task<long> RightPushAsync<T>(string redisKey, T redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListRightPushAsync(redisKey, Serialize(redisValue));
         }
 
@@ -264,9 +299,9 @@ namespace Wen.Helpers.Common.Redis2
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public async Task<long> ListLeftPushAsync<T>(string redisKey, T redisValue)
+        public async Task<long> LeftPushAsync<T>(string redisKey, T redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.ListLeftPushAsync(redisKey, Serialize(redisValue));
         }
 

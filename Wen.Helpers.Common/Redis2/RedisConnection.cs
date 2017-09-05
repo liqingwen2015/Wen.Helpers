@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -8,29 +9,28 @@ using StackExchange.Redis;
 
 namespace Wen.Helpers.Common.Redis2
 {
+    /// <summary>
+    /// Redis 连接对象
+    /// </summary>
     public class RedisConnection
     {
-
         #region private field
 
         /// <summary>
-        /// 锁
+        /// redis 连接对象缓存集合
         /// </summary>
-        private static readonly object Locker = new object();
+        private static readonly ConcurrentDictionary<string, IConnectionMultiplexer> RedisConnectionCache =
+            new ConcurrentDictionary<string, IConnectionMultiplexer>();
 
         /// <summary>
-        /// redis 连接对象
+        /// redis 连接对象内的数据库缓存集合
         /// </summary>
-        private static IConnectionMultiplexer _connMultiplexer;
+        private static readonly ConcurrentDictionary<string, IDatabase> RedisDbCache =
+            new ConcurrentDictionary<string, IDatabase>();
 
         #endregion private field
 
         #region 属性
-
-        /// <summary>
-        /// 默认的 Key 值（用来当作 RedisKey 的前缀）
-        /// </summary>
-        public static string DefaultKey { get; }
 
         /// <summary>
         /// 连接字符串
@@ -44,8 +44,9 @@ namespace Wen.Helpers.Common.Redis2
             try
             {
                 ConnectionString = ConfigurationManager.ConnectionStrings["RedisConnectionString"].ConnectionString;
-                _connMultiplexer = GetConnection();
-                DefaultKey = ConfigurationManager.AppSettings["Redis.DefaultKey"];
+
+                IConnectionMultiplexer connMultiplexer = GetConnection(ConnectionString);
+                RedisConnectionCache.TryAdd(ConnectionString, connMultiplexer);
             }
             catch (Exception e)
             {
@@ -55,24 +56,46 @@ namespace Wen.Helpers.Common.Redis2
         }
 
         /// <summary>
-        /// 获取单例连接对象
+        /// 获取连接对象
         /// </summary>
         /// <param name="connectionString"></param>
         /// <returns></returns>
         public static IConnectionMultiplexer GetConnectionMultiplexer(string connectionString = null)
         {
-            if (_connMultiplexer == null)
+            connectionString = connectionString ?? ConnectionString;
+            var isExist = RedisConnectionCache.TryGetValue(connectionString, out IConnectionMultiplexer connMultiplexer);
+
+            if (isExist && connMultiplexer.IsConnected)
             {
-                lock (Locker)
-                {
-                    if (_connMultiplexer == null || !_connMultiplexer.IsConnected)
-                    {
-                        _connMultiplexer = GetConnection(connectionString);
-                    }
-                }
+                return connMultiplexer;
             }
 
-            return _connMultiplexer;
+            connMultiplexer = GetConnection(connectionString);
+            RedisConnectionCache[connectionString] = connMultiplexer;
+
+            return connMultiplexer;
+        }
+
+        /// <summary>
+        /// 获取连接对象
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        public static IDatabase GetDatabase(string connectionString = null, int db = -1)
+        {
+            connectionString = connectionString ?? ConnectionString;
+            var key = "connectionString" + ":" + db;
+            var isExist = RedisDbCache.TryGetValue(key, out IDatabase database);
+
+            if (isExist)
+            {
+                return database;
+            }
+
+            database = GetConnectionMultiplexer(connectionString).GetDatabase(db);
+            RedisDbCache[key] = database;
+            return database;
         }
 
         #region 注册事件

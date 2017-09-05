@@ -11,15 +11,50 @@ namespace Wen.Helpers.Common.Redis2.Product
 {
     public class RedisHash : RedisProduct
     {
+        #region ctor
+
+        /// <summary>
+        /// 默认构造函数（所有选项取默认值）
+        /// </summary>
+        public RedisHash() : this(null, -1, null, null)
+        {
+
+        }
+
+        public RedisHash(int db = -1) : this(null, db)
+        {
+
+        }
+
+        public RedisHash(string connectionString = null, int db = -1) :
+            this(connectionString, db, null, null)
+        {
+
+        }
+
+        public RedisHash(string connectionString = null, int db = -1, string keyPrefix = null) :
+            this(connectionString, db, keyPrefix, null)
+        {
+
+        }
+
+        public RedisHash(string connectionString = null, int db = -1, string keyPrefix = null, object asyncState = null) :
+            base(connectionString, db, keyPrefix, asyncState)
+        {
+
+        }
+
+        #endregion ctor
+
         /// <summary>
         /// 判断该字段是否存在 hash 中
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
         /// <returns></returns>
-        public bool HashExists(string redisKey, string hashField)
+        public bool Exists(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.HashExists(redisKey, hashField);
         }
 
@@ -29,9 +64,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
         /// <returns></returns>
-        public bool HashDelete(string redisKey, string hashField)
+        public bool Delete(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.HashDelete(redisKey, hashField);
         }
 
@@ -41,9 +76,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="hashFields"></param>
         /// <returns></returns>
-        public long HashDelete(string redisKey, IEnumerable<string> hashFields)
+        public long Delete(string redisKey, IEnumerable<string> hashFields)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var fields = hashFields.Select(x => (RedisValue) x);
 
             return Db.HashDelete(redisKey, fields.ToArray());
@@ -56,9 +91,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="hashField"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool HashSet(string redisKey, string hashField, string value)
+        public bool Set(string redisKey, string hashField, string value)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.HashSet(redisKey, hashField, value);
         }
 
@@ -67,9 +102,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="hashFields"></param>
-        public void HashSet(string redisKey, IEnumerable<KeyValuePair<string, string>> hashFields)
+        public void Set(string redisKey, IEnumerable<KeyValuePair<string, string>> hashFields)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var entries = hashFields.Select(x => new HashEntry(x.Key, x.Value));
 
             Db.HashSet(redisKey, entries.ToArray());
@@ -81,9 +116,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
         /// <returns></returns>
-        public string HashGet(string redisKey, string hashField)
+        public string Get(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Db.HashGet(redisKey, hashField);
         }
 
@@ -93,12 +128,12 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="hashFields"></param>
         /// <returns></returns>
-        public IEnumerable<string> HashGet(string redisKey, IEnumerable<string> hashFields)
+        public IEnumerable<string> Get(string redisKey, IEnumerable<string> hashFields)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var fields = hashFields.Select(x => (RedisValue) x);
 
-            return ConvertStrings(Db.HashGet(redisKey, fields.ToArray()));
+            return ConvertToStrings(Db.HashGet(redisKey, fields.ToArray()));
         }
 
         /// <summary>
@@ -106,10 +141,10 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public IEnumerable<string> HashKeys(string redisKey)
+        public IEnumerable<string> Keys(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(Db.HashKeys(redisKey));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(Db.HashKeys(redisKey));
         }
 
         /// <summary>
@@ -117,10 +152,10 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
-        public IEnumerable<string> HashValues(string redisKey)
+        public IEnumerable<string> Values(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(Db.HashValues(redisKey));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(Db.HashValues(redisKey));
         }
 
         /// <summary>
@@ -130,9 +165,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="hashField"></param>
         /// <param name="redisValue"></param>
         /// <returns></returns>
-        public bool HashSet<T>(string redisKey, string hashField, T redisValue)
+        public bool Set<T>(string redisKey, string hashField, T redisValue)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(redisValue);
 
             return Db.HashSet(redisKey, hashField, json);
@@ -144,9 +179,9 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
         /// <returns></returns>
-        public T HashGet<T>(string redisKey, string hashField)
+        public T Get<T>(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
 
             return Deserialize<T>(Db.HashGet(redisKey, hashField));
         }
@@ -161,7 +196,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<bool> HashExistsAsync(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.HashExistsAsync(redisKey, hashField);
         }
 
@@ -173,7 +208,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<bool> HashDeleteAsync(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.HashDeleteAsync(redisKey, hashField);
         }
 
@@ -185,7 +220,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<long> HashDeleteAsync(string redisKey, IEnumerable<string> hashFields)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var fields = hashFields.Select(x => (RedisValue) x);
 
             return await Db.HashDeleteAsync(redisKey, fields.ToArray());
@@ -200,7 +235,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<bool> HashSetAsync(string redisKey, string hashField, string value)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.HashSetAsync(redisKey, hashField, value);
         }
 
@@ -211,8 +246,8 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <param name="hashFields"></param>
         public async Task HashSetAsync(string redisKey, IEnumerable<KeyValuePair<string, string>> hashFields)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            var entries = hashFields.Select(x => new HashEntry(KeyPrefixAdd(x.Key), x.Value));
+            redisKey = AddKeyPrefix(redisKey);
+            var entries = hashFields.Select(x => new HashEntry(AddKeyPrefix(x.Key), x.Value));
             await Db.HashSetAsync(redisKey, entries.ToArray());
         }
 
@@ -224,7 +259,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<string> HashGetAsync(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return await Db.HashGetAsync(redisKey, hashField);
         }
 
@@ -238,10 +273,10 @@ namespace Wen.Helpers.Common.Redis2.Product
         public async Task<IEnumerable<string>> HashGetAsync(string redisKey, IEnumerable<string> hashFields,
             string value)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var fields = hashFields.Select(x => (RedisValue) x);
 
-            return ConvertStrings(await Db.HashGetAsync(redisKey, fields.ToArray()));
+            return ConvertToStrings(await Db.HashGetAsync(redisKey, fields.ToArray()));
         }
 
         /// <summary>
@@ -251,8 +286,8 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<IEnumerable<string>> HashKeysAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(await Db.HashKeysAsync(redisKey));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(await Db.HashKeysAsync(redisKey));
         }
 
         /// <summary>
@@ -262,8 +297,8 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<IEnumerable<string>> HashValuesAsync(string redisKey)
         {
-            redisKey = KeyPrefixAdd(redisKey);
-            return ConvertStrings(await Db.HashValuesAsync(redisKey));
+            redisKey = AddKeyPrefix(redisKey);
+            return ConvertToStrings(await Db.HashValuesAsync(redisKey));
         }
 
         /// <summary>
@@ -275,7 +310,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<bool> HashSetAsync<T>(string redisKey, string hashField, T value)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             var json = Serialize(value);
             return await Db.HashSetAsync(redisKey, hashField, json);
         }
@@ -288,7 +323,7 @@ namespace Wen.Helpers.Common.Redis2.Product
         /// <returns></returns>
         public async Task<T> HashGetAsync<T>(string redisKey, string hashField)
         {
-            redisKey = KeyPrefixAdd(redisKey);
+            redisKey = AddKeyPrefix(redisKey);
             return Deserialize<T>(await Db.HashGetAsync(redisKey, hashField));
         }
 
