@@ -51,7 +51,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EmailHelperTest.cs" />
+    <Compile Include="TimeHelperTest.cs" />
     <Compile Include="ComputerInfoHelperTest.cs" />
+    <Compile Include="PerformanceCounterHelperTest.cs" />
     <Compile Include="RedisHelper2Test.cs" />
     <Compile Include="RedisHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

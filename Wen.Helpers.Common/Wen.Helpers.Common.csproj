@@ -98,10 +98,12 @@
     <Compile Include="Computer\Config\ManagementBaseObjectPropertyName.cs" />
     <Compile Include="Computer\Config\WmiPath.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
+    <Compile Include="Email\EmailHelper.cs" />
     <Compile Include="Extend\EncodingType.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="Http\ValidateCodeHelper.cs" />
     <Compile Include="Npoi\NpoiHelper.cs" />
+    <Compile Include="Performance\PerformanceCounterHelper.cs" />
     <Compile Include="Redis\OrderType.cs" />
     <Compile Include="Extend\ExtensionMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="DB\SqlHelper.cs" />
     <Compile Include="DB\SqLiteHelper.cs" />
     <Compile Include="Text\TextHelper.cs" />
+    <Compile Include="Time\TimeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
