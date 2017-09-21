@@ -97,6 +97,7 @@
     <Compile Include="Computer\ComputerInfoHelper.cs" />
     <Compile Include="Computer\Config\ManagementBaseObjectPropertyName.cs" />
     <Compile Include="Computer\Config\WmiPath.cs" />
+    <Compile Include="Configuration\ConfigurationHelper.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Email\EmailHelper.cs" />
     <Compile Include="Extend\EnumerableExtendMethod.cs" />

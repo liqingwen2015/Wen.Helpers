@@ -37,12 +37,9 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         private static string HashEncrypt(HashAlgorithm hashAlgorithm, string input, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
-
+            encoding = encoding ?? DefaultEncoding;
             var data = hashAlgorithm.ComputeHash(encoding.GetBytes(input));
+
             return BitConverter.ToString(data).Replace("-", "");
         }
 
@@ -206,11 +203,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string HmacMd5Encrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
-
+            encoding = encoding ?? DefaultEncoding;
             return HashEncrypt(new HMACMD5(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -227,11 +220,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string HmacSha1Encrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
-
+            encoding = encoding ?? DefaultEncoding;
             return HashEncrypt(new HMACSHA1(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -269,11 +258,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string HmacSha384Encrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
-
+            encoding = encoding ?? DefaultEncoding;
             return HashEncrypt(new HMACSHA384(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -290,11 +275,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string HmacSha512Encrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
-
+            encoding = encoding ?? DefaultEncoding;
             return HashEncrypt(new HMACSHA512(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -315,10 +296,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string DesEncrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
+            encoding = encoding ?? DefaultEncoding;
 
             try
             {
@@ -358,10 +336,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns></returns>
         public static string DesDecrypt(string input, string key, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
+            encoding = encoding ?? DefaultEncoding;
 
             try
             {
@@ -421,10 +396,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns> 经过加密的字符串 </returns>
         public static string RsaEncrypt(string publickey, string content, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
+            encoding = encoding ?? DefaultEncoding;
 
             var rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(publickey);
@@ -443,10 +415,7 @@ namespace Wen.Helpers.Common.Security
         /// <returns> 解密后的字符串 </returns>
         public static string RsaDecrypt(string privatekey, string content, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = DefaultEncoding;
-            }
+            encoding = encoding ?? DefaultEncoding;
 
             var rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(privatekey);

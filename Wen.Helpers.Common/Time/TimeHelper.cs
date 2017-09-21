@@ -2,43 +2,89 @@
 
 namespace Wen.Helpers.Common.Time
 {
+    /// <summary>
+    /// 时间助手
+    /// </summary>
     public static class TimeHelper
     {
+        #region private field
+
         /// <summary>
-        /// DateTime时间格式转换为13位带毫秒的Unix时间戳
+        /// 开始时间
         /// </summary>
-        /// <param name="time"> DateTime时间格式</param>
-        /// <returns>Unix时间戳格式</returns>
-        public static long ConvertDateTimeLong(DateTime time)
+        private static readonly DateTime StartTime;
+
+        #endregion private field
+
+        #region ctor
+
+        static TimeHelper()
         {
-            var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            return (long) (time - startTime).TotalMilliseconds;
+            try
+            {
+                StartTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        //=========================================
+        #endregion ctor
+
         /// <summary>
-        /// DateTime时间格式转换为10位不带毫秒的Unix时间戳
+        /// DateTime 时间格式转换为 13 位带毫秒的 Unix 时间戳
         /// </summary>
-        /// <param name="time"> DateTime时间格式</param>
-        /// <returns>Unix时间戳格式</returns>
-        public static int ConvertDateTimeInt(DateTime time)
+        /// <param name="time">需转换的时间，null 时取当前的时间（DateTime.Now）</param>
+        /// <returns>Unix 时间戳格式</returns>
+        public static long ToTimeStampLong(DateTime? time = null)
         {
-            var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            return (int) (time - startTime).TotalSeconds;
+            return (long) ToTimeStamp(time);
         }
 
-        //========================================
         /// <summary>
-        /// 时间戳转为C#格式时间
+        /// DateTime 时间格式转换为 10 位不带毫秒的 Unix 时间戳
         /// </summary>
-        /// <param name="timeStamp">Unix时间戳格式</param>
-        /// <returns>C#格式时间</returns>
-        public static DateTime GetTime(string timeStamp)
+        /// <param name="time">需转换的时间，null 时取当前的时间（DateTime.Now）</param>
+        /// <returns>Unix 时间戳格式</returns>
+        public static int ToTimeStampInt(DateTime? time = null)
         {
-            var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            var lTime = long.Parse(timeStamp + "0000000");
-            var toNow = new TimeSpan(lTime);
-            return dtStart.Add(toNow);
+            return (int) ToTimeStamp(time);
         }
+
+        /// <summary>
+        /// 时间戳转为 C# 格式时间
+        /// </summary>
+        /// <param name="timeStamp">Unix 时间戳格式</param>
+        /// <returns>C# 格式时间</returns>
+        public static DateTime ToDateTime(string timeStamp)
+        {
+            var isSucceed = long.TryParse(timeStamp + "0000000", out long convertedTimeStamp);
+
+            if (!isSucceed) return default(DateTime);
+
+            var timeSpanValue = new TimeSpan(convertedTimeStamp);
+            return StartTime.Add(timeSpanValue);
+        }
+
+        #region private method
+
+        /// <summary>
+        ///  转换成时间戳
+        /// </summary>
+        /// <param name="time">需转换的时间，null 时取当前的时间（DateTime.Now）</param>
+        /// <returns></returns>
+        private static double ToTimeStamp(DateTime? time = null)
+        {
+            if (time == null)
+            {
+                time = DateTime.Now;
+            }
+
+            return (time.Value - StartTime).TotalSeconds;
+        }
+
+        #endregion private method
     }
 }

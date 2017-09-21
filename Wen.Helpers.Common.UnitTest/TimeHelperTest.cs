@@ -11,16 +11,16 @@ namespace Wen.Helpers.Common.UnitTest
     public class TimeHelperTest
     {
         [TestMethod]
-        public void ConvertDateTimeLong()
+        public void ToTimeStampLong()
         {
-            Console.WriteLine(TimeHelper.ConvertDateTimeLong(DateTime.Now));
+            Console.WriteLine(TimeHelper.ToTimeStampLong(DateTime.Now));
             var a=SecurityHelper.DefaultEncoding;
         }
 
         [TestMethod]
-        public void ConvertDateTimeInt()
+        public void ToTimeStampInt()
         {
-            Console.WriteLine(TimeHelper.ConvertDateTimeInt(DateTime.Now));
+            Console.WriteLine(TimeHelper.ToTimeStampInt(DateTime.Now));
         }
     }
 

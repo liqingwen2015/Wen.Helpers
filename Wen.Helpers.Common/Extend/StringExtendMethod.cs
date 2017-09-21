@@ -78,11 +78,6 @@ namespace Wen.Helpers.Common.Extend
         /// <returns> 加密后的哈希值 </returns>
         public static string ToMd5On16Bit(this string self, Encoding encoding = null)
         {
-            if (encoding == null)
-            {
-                encoding = Encoding.UTF8;
-            }
-
             return ToMd5On32Bit(self, encoding).Substring(8, 16);
         }
 
