@@ -67,7 +67,7 @@ namespace Wen.Helpers.Common.DB
         /// <param name="commandType"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static SqlDataReader ExecuteDataReader(string sql, CommandType commandType = CommandType.Text,
+        private static SqlDataReader ExecuteDataReader(string sql, CommandType commandType = CommandType.Text,
             params SqlParameter[] parameters)
         {
             var conn = new SqlConnection(ConnectionString);

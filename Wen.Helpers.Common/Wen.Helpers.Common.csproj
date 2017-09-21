@@ -99,13 +99,13 @@
     <Compile Include="Computer\Config\WmiPath.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Email\EmailHelper.cs" />
-    <Compile Include="Extend\EncodingType.cs" />
+    <Compile Include="Extend\EnumerableExtendMethod.cs" />
+    <Compile Include="Extend\StringExtendMethod.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="Http\ValidateCodeHelper.cs" />
     <Compile Include="Npoi\NpoiHelper.cs" />
     <Compile Include="Performance\PerformanceCounterHelper.cs" />
     <Compile Include="Redis\OrderType.cs" />
-    <Compile Include="Extend\ExtensionMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Random\RandomHelper.cs" />
     <Compile Include="Redis\RedisHelper.cs" />

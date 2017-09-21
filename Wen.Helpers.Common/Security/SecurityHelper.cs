@@ -12,9 +12,20 @@ namespace Wen.Helpers.Common.Security
     /// <summary>
     /// 安全助手
     /// </summary>
-    public sealed class SecurityHelper
+    public static class SecurityHelper
     {
-        private static readonly byte[] IvBytes = {0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF};
+        private static readonly byte[] IvBytes = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF };
+
+        #region prop
+
+        /// <summary>
+        /// 默认编码
+        /// </summary>
+        public static Encoding DefaultEncoding { get; } = Encoding.UTF8;
+
+        #endregion prop
+
+
 
         #region 通用加密算法
 
@@ -23,12 +34,16 @@ namespace Wen.Helpers.Common.Security
         /// </summary>
         /// <param name="hashAlgorithm"> 所有加密哈希算法实现均必须从中派生的基类 </param>
         /// <param name="input"> 待加密的字符串 </param>
-        /// <param name="encoding"> 字符编码 </param>
+        /// <param name="encoding"> 字符编码，为 null 时采用默认编码（UTF-8） </param>
         /// <returns></returns>
-        private static string HashEncrypt(HashAlgorithm hashAlgorithm, string input, Encoding encoding)
+        private static string HashEncrypt(HashAlgorithm hashAlgorithm, string input, Encoding encoding = null)
         {
-            var data = hashAlgorithm.ComputeHash(encoding.GetBytes(input));
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
 
+            var data = hashAlgorithm.ComputeHash(encoding.GetBytes(input));
             return BitConverter.ToString(data).Replace("-", "");
         }
 
@@ -41,7 +56,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
         private static bool VerifyHashValue(HashAlgorithm hashAlgorithm, string unhashedText, string hashedText,
-            Encoding encoding)
+            Encoding encoding = null)
         {
             return string.Equals(HashEncrypt(hashAlgorithm, unhashedText, encoding), hashedText,
                 StringComparison.OrdinalIgnoreCase);
@@ -59,7 +74,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 待加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string Md5Encrypt(string input, Encoding encoding)
+        public static string Md5Encrypt(string input, Encoding encoding = null)
         {
             return HashEncrypt(MD5.Create(), input, encoding);
         }
@@ -70,7 +85,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 未加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static bool VerifyMd5Value(string input, Encoding encoding)
+        public static bool VerifyMd5Value(string input, Encoding encoding = null)
         {
             return VerifyHashValue(MD5.Create(), input, Md5Encrypt(input, encoding), encoding);
         }
@@ -83,9 +98,9 @@ namespace Wen.Helpers.Common.Security
         /// SHA1 加密
         /// </summary>
         /// <param name="input"> 要加密的字符串 </param>
-        /// <param name="encoding"> 字符编码 </param>
+        /// <param name="encoding"> 字符编码，为 null 时取默认值 </param>
         /// <returns></returns>
-        public static string Sha1Encrypt(string input, Encoding encoding)
+        public static string Sha1Encrypt(string input, Encoding encoding = null)
         {
             return HashEncrypt(SHA1.Create(), input, encoding);
         }
@@ -96,7 +111,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 未加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static bool VerifySha1Value(string input, Encoding encoding)
+        public static bool VerifySha1Value(string input, Encoding encoding = null)
         {
             return VerifyHashValue(SHA1.Create(), input, Sha1Encrypt(input, encoding), encoding);
         }
@@ -111,7 +126,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 要加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string Sha256Encrypt(string input, Encoding encoding)
+        public static string Sha256Encrypt(string input, Encoding encoding = null)
         {
             return HashEncrypt(SHA256.Create(), input, encoding);
         }
@@ -122,7 +137,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 未加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static bool VerifySha256Value(string input, Encoding encoding)
+        public static bool VerifySha256Value(string input, Encoding encoding = null)
         {
             return VerifyHashValue(SHA256.Create(), input, Sha256Encrypt(input, encoding), encoding);
         }
@@ -137,7 +152,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 要加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string Sha384Encrypt(string input, Encoding encoding)
+        public static string Sha384Encrypt(string input, Encoding encoding = null)
         {
             return HashEncrypt(SHA384.Create(), input, encoding);
         }
@@ -148,7 +163,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 未加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static bool VerifySha384Value(string input, Encoding encoding)
+        public static bool VerifySha384Value(string input, Encoding encoding = null)
         {
             return VerifyHashValue(SHA256.Create(), input, Sha384Encrypt(input, encoding), encoding);
         }
@@ -163,7 +178,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 要加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string Sha512Encrypt(string input, Encoding encoding)
+        public static string Sha512Encrypt(string input, Encoding encoding = null)
         {
             return HashEncrypt(SHA512.Create(), input, encoding);
         }
@@ -174,7 +189,7 @@ namespace Wen.Helpers.Common.Security
         /// <param name="input"> 未加密的字符串 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static bool VerifySha512Value(string input, Encoding encoding)
+        public static bool VerifySha512Value(string input, Encoding encoding = null)
         {
             return VerifyHashValue(SHA512.Create(), input, Sha512Encrypt(input, encoding), encoding);
         }
@@ -190,8 +205,13 @@ namespace Wen.Helpers.Common.Security
         /// <param name="key"> 密钥 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string HmacMd5Encrypt(string input, string key, Encoding encoding)
+        public static string HmacMd5Encrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             return HashEncrypt(new HMACMD5(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -206,8 +226,13 @@ namespace Wen.Helpers.Common.Security
         /// <param name="key"> 密钥 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string HmacSha1Encrypt(string input, string key, Encoding encoding)
+        public static string HmacSha1Encrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             return HashEncrypt(new HMACSHA1(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -222,8 +247,13 @@ namespace Wen.Helpers.Common.Security
         /// <param name="key"> 密钥 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string HmacSha256Encrypt(string input, string key, Encoding encoding)
+        public static string HmacSha256Encrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             return HashEncrypt(new HMACSHA256(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -238,8 +268,13 @@ namespace Wen.Helpers.Common.Security
         /// <param name="key"> 密钥 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string HmacSha384Encrypt(string input, string key, Encoding encoding)
+        public static string HmacSha384Encrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             return HashEncrypt(new HMACSHA384(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -254,8 +289,13 @@ namespace Wen.Helpers.Common.Security
         /// <param name="key"> 密钥 </param>
         /// <param name="encoding"> 字符编码 </param>
         /// <returns></returns>
-        public static string HmacSha512Encrypt(string input, string key, Encoding encoding)
+        public static string HmacSha512Encrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             return HashEncrypt(new HMACSHA512(encoding.GetBytes(key)), input, encoding);
         }
 
@@ -272,12 +312,18 @@ namespace Wen.Helpers.Common.Security
         /// </summary>
         /// <param name="input"> 待加密的字符串 </param>
         /// <param name="key"> 密钥（8位） </param>
+        /// <param name="encoding">编码，为 null 取默认值</param>
         /// <returns></returns>
-        public static string DesEncrypt(string input, string key)
+        public static string DesEncrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             try
             {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
+                var keyBytes = encoding.GetBytes(key);
                 //var ivBytes = Encoding.UTF8.GetBytes(iv);
 
                 var des = DES.Create();
@@ -286,10 +332,10 @@ namespace Wen.Helpers.Common.Security
 
                 using (var ms = new MemoryStream())
                 {
-                    var data = Encoding.UTF8.GetBytes(input);
+                    var data = encoding.GetBytes(input);
 
-                    using (var cs = new CryptoStream(ms, des.CreateEncryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                    )
+                    using (var cs =
+                        new CryptoStream(ms, des.CreateEncryptor(keyBytes, IvBytes), CryptoStreamMode.Write))
                     {
                         cs.Write(data, 0, data.Length);
                         cs.FlushFinalBlock();
@@ -309,9 +355,15 @@ namespace Wen.Helpers.Common.Security
         /// </summary>
         /// <param name="input"> 待解密的字符串 </param>
         /// <param name="key"> 密钥（8位） </param>
+        /// <param name="encoding">编码，为 null 时取默认值</param>
         /// <returns></returns>
-        public static string DesDecrypt(string input, string key)
+        public static string DesDecrypt(string input, string key, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             try
             {
                 var keyBytes = Encoding.UTF8.GetBytes(key);
@@ -325,15 +377,14 @@ namespace Wen.Helpers.Common.Security
                 {
                     var data = Convert.FromBase64String(input);
 
-                    using (var cs = new CryptoStream(ms, des.CreateDecryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                    )
+                    using (var cs =
+                        new CryptoStream(ms, des.CreateDecryptor(keyBytes, IvBytes), CryptoStreamMode.Write))
                     {
                         cs.Write(data, 0, data.Length);
-
                         cs.FlushFinalBlock();
                     }
 
-                    return Encoding.UTF8.GetString(ms.ToArray());
+                    return encoding.GetString(ms.ToArray());
                 }
             }
             catch
@@ -367,12 +418,19 @@ namespace Wen.Helpers.Common.Security
         /// </summary>
         /// <param name="publickey"> 公钥 </param>
         /// <param name="content"> 待加密的内容 </param>
+        /// <param name="encoding">编码，为 null 时取默认编码</param>
         /// <returns> 经过加密的字符串 </returns>
-        public static string RsaEncrypt(string publickey, string content)
+        public static string RsaEncrypt(string publickey, string content, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             var rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(publickey);
-            var cipherbytes = rsa.Encrypt(Encoding.UTF8.GetBytes(content), false);
+
+            var cipherbytes = rsa.Encrypt(encoding.GetBytes(content), false);
 
             return Convert.ToBase64String(cipherbytes);
         }
@@ -382,14 +440,20 @@ namespace Wen.Helpers.Common.Security
         /// </summary>
         /// <param name="privatekey"> 私钥 </param>
         /// <param name="content"> 待解密的内容 </param>
+        /// <param name="encoding"></param>
         /// <returns> 解密后的字符串 </returns>
-        public static string RsaDecrypt(string privatekey, string content)
+        public static string RsaDecrypt(string privatekey, string content, Encoding encoding = null)
         {
+            if (encoding == null)
+            {
+                encoding = DefaultEncoding;
+            }
+
             var rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(privatekey);
             var cipherbytes = rsa.Decrypt(Convert.FromBase64String(content), false);
 
-            return Encoding.UTF8.GetString(cipherbytes);
+            return encoding.GetString(cipherbytes);
         }
 
         #endregion 非对称加密算法

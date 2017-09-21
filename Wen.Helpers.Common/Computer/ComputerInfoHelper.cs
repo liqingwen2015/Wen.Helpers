@@ -8,7 +8,7 @@ namespace Wen.Helpers.Common.Computer
     /// <summary>
     /// 计算机信息助手类
     /// </summary>
-    public class ComputerInfoHelper
+    public static class ComputerInfoHelper
     {
         /// <summary>
         /// 获取硬盘容量汇总
