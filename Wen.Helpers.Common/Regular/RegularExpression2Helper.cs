@@ -345,7 +345,8 @@ namespace Wen.Helpers.Common.Regular
         public static bool IsIpAddress(string value)
         {
             return
-                value.IsMatch(@"^(\d(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\d\.){3}\d(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\d$");
+                value.IsMatch(
+                    @"^(\d(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\d\.){3}\d(25[0-5]|2[0-4][0-9]|1?[0-9]?[0-9])\d$");
         }
 
         #endregion

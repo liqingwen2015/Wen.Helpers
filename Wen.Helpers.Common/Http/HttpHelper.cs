@@ -58,7 +58,8 @@ namespace Wen.Helpers.Common.Http
         /// <param name="paramDictionary">参数字典</param>
         /// <param name="encoding">字符编码类型（默认 UTF8）</param>
         /// <returns></returns>
-        public static async Task<string> GetAsync(string url, IDictionary<string, string> paramDictionary, Encoding encoding = null)
+        public static async Task<string> GetAsync(string url, IDictionary<string, string> paramDictionary,
+            Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(url))
             {
@@ -71,7 +72,8 @@ namespace Wen.Helpers.Common.Http
             }
 
             //参数转字符串
-            var paramString = paramDictionary.Aggregate("", (current, param) => current + (param.Key + "=" + param.Value));
+            var paramString =
+                paramDictionary.Aggregate("", (current, param) => current + param.Key + "=" + param.Value);
 
             return await GetAsync(url, paramString, encoding);
         }
@@ -121,7 +123,8 @@ namespace Wen.Helpers.Common.Http
         /// <param name="paramDictionary">参数字典</param>
         /// <param name="encoding">字符编码类型（默认 UTF8）</param>
         /// <returns></returns>
-        public static async Task<string> PostAsync(string url, IDictionary<string, string> paramDictionary, Encoding encoding = null)
+        public static async Task<string> PostAsync(string url, IDictionary<string, string> paramDictionary,
+            Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(url))
                 throw new Exception("url 为空！");
@@ -131,7 +134,7 @@ namespace Wen.Helpers.Common.Http
                 //参数转字符串
                 var paramString = paramDictionary == null
                     ? ""
-                    : paramDictionary.Aggregate("", (current, param) => current + (param.Key + "=" + param.Value));
+                    : paramDictionary.Aggregate("", (current, param) => current + param.Key + "=" + param.Value);
 
                 return await PostAsync(url, paramString, encoding);
             }

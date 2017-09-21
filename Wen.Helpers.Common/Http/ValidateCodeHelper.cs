@@ -31,7 +31,7 @@ namespace Wen.Helpers.Common.Http
         /// </summary>
         /// <param name="length">指定验证码的长度</param>
         /// <returns></returns>
-        public static string CreateValidateCode(int length=5)
+        public static string CreateValidateCode(int length = 5)
         {
             var randMembers = new int[length];
             var validateNums = new int[length];

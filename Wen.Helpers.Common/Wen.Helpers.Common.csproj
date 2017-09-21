@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Wen.Helpers.Common</RootNamespace>
     <AssemblyName>Wen.Helpers.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -112,8 +112,8 @@
     <Compile Include="Regular\RegularExpression2Helper.cs" />
     <Compile Include="Regular\RegularExpressionHelper.cs" />
     <Compile Include="Security\SecurityHelper.cs" />
-    <Compile Include="DB\SqlHelper.cs" />
-    <Compile Include="DB\SqLiteHelper.cs" />
+    <Compile Include="Db\SqlHelper.cs" />
+    <Compile Include="Db\SqLiteHelper.cs" />
     <Compile Include="Text\TextHelper.cs" />
     <Compile Include="Time\TimeHelper.cs" />
   </ItemGroup>

@@ -35,12 +35,13 @@ namespace Wen.Helpers.Common.Email
         /// <param name="receiverAddresses">接收人邮箱地址列表</param>
         /// <param name="subject">主题</param>
         /// <param name="body">内容正文</param>
-        public static void SendEmail(string senderAddress, string senderPassword, string receiverAddresses, string subject,
+        public static void SendEmail(string senderAddress, string senderPassword, string receiverAddresses,
+            string subject,
             string body)
         {
             //设置发件人,发件人需要与设置的邮件发送服务器的邮箱一致
             var fromAddr = new MailAddress(senderAddress);
-            var message = new MailMessage { From = fromAddr };
+            var message = new MailMessage {From = fromAddr};
 
             //设置收件人,可添加多个,添加方法与下面的一样
             message.To.Add(receiverAddresses);

@@ -9,10 +9,10 @@ namespace Wen.Helpers.Common.Time
         /// </summary>
         /// <param name="time"> DateTime时间格式</param>
         /// <returns>Unix时间戳格式</returns>
-        public static long ConvertDateTimeLong(System.DateTime time)
+        public static long ConvertDateTimeLong(DateTime time)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            return (long)(time - startTime).TotalMilliseconds;
+            var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return (long) (time - startTime).TotalMilliseconds;
         }
 
         //=========================================
@@ -21,11 +21,12 @@ namespace Wen.Helpers.Common.Time
         /// </summary>
         /// <param name="time"> DateTime时间格式</param>
         /// <returns>Unix时间戳格式</returns>
-        public static int ConvertDateTimeInt(System.DateTime time)
+        public static int ConvertDateTimeInt(DateTime time)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            return (int)(time - startTime).TotalSeconds;
+            var startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            return (int) (time - startTime).TotalSeconds;
         }
+
         //========================================
         /// <summary>
         /// 时间戳转为C#格式时间
@@ -34,9 +35,9 @@ namespace Wen.Helpers.Common.Time
         /// <returns>C#格式时间</returns>
         public static DateTime GetTime(string timeStamp)
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            long lTime = long.Parse(timeStamp + "0000000");
-            TimeSpan toNow = new TimeSpan(lTime);
+            var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            var lTime = long.Parse(timeStamp + "0000000");
+            var toNow = new TimeSpan(lTime);
             return dtStart.Add(toNow);
         }
     }

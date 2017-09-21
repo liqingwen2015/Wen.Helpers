@@ -21,10 +21,11 @@ namespace Wen.Helpers.Common.Computer
                 var diskDriveManagementInstances = diskDriveManagement.GetInstances();
 
                 return diskDriveManagementInstances.OfType<ManagementObject>()
-                    .Select(managementObject => Convert.ToInt64(managementObject[ManagementBaseObjectPropertyName.Size]))
+                    .Select(
+                        managementObject => Convert.ToInt64(managementObject[ManagementBaseObjectPropertyName.Size]))
                     .Aggregate<long, long>(0, (current, diskSize) => diskSize + current);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;

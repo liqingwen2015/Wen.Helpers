@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 #endregion
 
-namespace Wen.Helpers.Common.DB
+namespace Wen.Helpers.Common.Db
 {
     /// <summary>
     /// SqlHelper

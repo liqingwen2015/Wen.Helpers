@@ -14,7 +14,7 @@ namespace Wen.Helpers.Common.Security
     /// </summary>
     public static class SecurityHelper
     {
-        private static readonly byte[] IvBytes = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF };
+        private static readonly byte[] IvBytes = {0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF};
 
         #region prop
 
@@ -24,7 +24,6 @@ namespace Wen.Helpers.Common.Security
         public static Encoding DefaultEncoding { get; } = Encoding.UTF8;
 
         #endregion prop
-
 
 
         #region 通用加密算法
