@@ -22,6 +22,23 @@ namespace Wen.Helpers.Common.Http
         /// </summary>
         private static readonly Encoding DefaultEncoding = Encoding.UTF8;
 
+        /// <summary>
+        /// 获取客户端IP地址
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIP(HttpRequest httpRequest)
+        {
+            var result = httpRequest.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (string.IsNullOrEmpty(result))
+                result = httpRequest.ServerVariables["REMOTE_ADDR"];
+
+            if (string.IsNullOrEmpty(result))
+                result = httpRequest.UserHostAddress;
+
+            return string.IsNullOrEmpty(result) ? "0.0.0.0" : result;
+        }
+
         #region get
 
         /// <summary>
@@ -165,7 +182,7 @@ namespace Wen.Helpers.Common.Http
                     //采取POST方式必须加的header，如果改为GET方式的话就去掉这句话即可
                     webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                     var responseData = webClient.UploadData(url, "POST", data); //得到返回字符流
-
+                    
                     return encoding.GetString(responseData); //解码
                 }
             }
@@ -244,23 +261,6 @@ namespace Wen.Helpers.Common.Http
 
         #endregion post async
 
-        /// <summary>
-        /// 获取客户端IP地址
-        /// </summary>
-        /// <returns></returns>
-        public static string GetIP(HttpRequest httpRequest)
-        {
-            var result = httpRequest.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-            if (string.IsNullOrEmpty(result))
-                result = httpRequest.ServerVariables["REMOTE_ADDR"];
-
-            if (string.IsNullOrEmpty(result))
-                result = httpRequest.UserHostAddress;
-
-            return string.IsNullOrEmpty(result) ? "0.0.0.0" : result;
-        }
-
         #region private-method
 
         private static string UploadString(string url, string paramString = null, Encoding encoding = null)
@@ -296,7 +296,8 @@ namespace Wen.Helpers.Common.Http
 
         #region async
 
-        private static async Task<string> UploadStringAsync(string url, string paramString = null, Encoding encoding = null)
+        private static async Task<string> UploadStringAsync(string url, string paramString = null,
+            Encoding encoding = null)
         {
             if (string.IsNullOrEmpty(url)) throw new ArgumentException("url 为空");
 
