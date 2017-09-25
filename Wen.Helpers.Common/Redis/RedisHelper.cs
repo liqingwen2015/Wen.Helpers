@@ -1,5 +1,6 @@
-﻿#region
+﻿#region namespaces
 
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
-using StackExchange.Redis;
 
 #endregion
 

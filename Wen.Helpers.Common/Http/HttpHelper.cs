@@ -1,4 +1,4 @@
-﻿#region
+﻿#region namespaces
 
 using System;
 using System.Collections.Generic;
@@ -182,7 +182,7 @@ namespace Wen.Helpers.Common.Http
                     //采取POST方式必须加的header，如果改为GET方式的话就去掉这句话即可
                     webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                     var responseData = webClient.UploadData(url, "POST", data); //得到返回字符流
-                    
+
                     return encoding.GetString(responseData); //解码
                 }
             }

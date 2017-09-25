@@ -1,16 +1,28 @@
-﻿namespace Wen.Helpers.Common.Random
+﻿#region namespaces
+
+using System;
+
+#endregion
+
+namespace Wen.Helpers.Common.Randomer
 {
     /// <summary>
     /// 随机数助手
     /// </summary>
-    public sealed class RandomHelper
+    public static class RandomHelper
     {
         /// <summary>
         /// 字符集合（去掉 0oO 这几个容易混淆的字符）
         /// </summary>
-        private const string CharSet = "123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ~!@#$%^&*()_+|";
+        private const string CharSet = "123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
 
-        private static readonly System.Random Random = new System.Random();
+        /// <summary>
+        /// 特殊字符集合（去掉 0oO 这几个容易混淆的字符）
+        /// </summary>
+        private const string HasSpecialCharSet = "123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
+
+
+        private static readonly Random Random = new Random();
 
         /// <summary>
         /// 返回一个介于 0.0 和 1.0 之间的随机数
@@ -25,15 +37,17 @@
         /// 返回一个随机字符串
         /// </summary>
         /// <param name="length"> 字符串长度 </param>
+        /// <param name="isHasSpecialChar">是否包含特殊字符</param>
         /// <returns></returns>
-        public static string NextString(int length)
+        public static string NextString(int length, bool isHasSpecialChar = true)
         {
             var arr = new char[length];
+            var charSet = isHasSpecialChar ? HasSpecialCharSet : CharSet;
 
             for (var i = 0; i < length; i++)
             {
-                var index = Random.Next(CharSet.Length);
-                arr[i] = CharSet[index];
+                var index = Random.Next(charSet.Length);
+                arr[i] = charSet[index];
             }
 
             return string.Join("", arr);

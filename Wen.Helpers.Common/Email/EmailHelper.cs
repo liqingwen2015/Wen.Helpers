@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region namespaces
+
+using System;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+
+#endregion
 
 namespace Wen.Helpers.Common.Email
 {

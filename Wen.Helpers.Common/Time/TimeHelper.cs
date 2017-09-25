@@ -1,4 +1,8 @@
-﻿using System;
+﻿#region namespaces
+
+using System;
+
+#endregion
 
 namespace Wen.Helpers.Common.Time
 {
@@ -78,9 +82,7 @@ namespace Wen.Helpers.Common.Time
         private static double ToTimeStamp(DateTime? time = null)
         {
             if (time == null)
-            {
                 time = DateTime.Now;
-            }
 
             return (time.Value - StartTime).TotalSeconds;
         }

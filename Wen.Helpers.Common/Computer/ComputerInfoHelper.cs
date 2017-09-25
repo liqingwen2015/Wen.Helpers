@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region namespaces
+
+using System;
 using System.Linq;
 using System.Management;
 using Wen.Helpers.Common.Computer.Config;
+
+#endregion
 
 namespace Wen.Helpers.Common.Computer
 {

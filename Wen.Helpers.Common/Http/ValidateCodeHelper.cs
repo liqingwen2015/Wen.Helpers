@@ -1,4 +1,4 @@
-﻿#region
+﻿#region namespaces
 
 using System;
 using System.Drawing;
@@ -38,7 +38,7 @@ namespace Wen.Helpers.Common.Http
             var validateNumberStr = "";
             //生成起始序列值
             var seekSeek = unchecked((int) DateTime.Now.Ticks);
-            var seekRand = new System.Random(seekSeek);
+            var seekRand = new Random(seekSeek);
             var beginSeek = seekRand.Next(0, int.MaxValue - length * 10000);
             var seeks = new int[length];
             for (var i = 0; i < length; i++)
@@ -49,7 +49,7 @@ namespace Wen.Helpers.Common.Http
             //生成随机数字
             for (var i = 0; i < length; i++)
             {
-                var rand = new System.Random(seeks[i]);
+                var rand = new Random(seeks[i]);
                 var pownum = 1 * (int) Math.Pow(10, length);
                 randMembers[i] = rand.Next(pownum, int.MaxValue);
             }
@@ -58,7 +58,7 @@ namespace Wen.Helpers.Common.Http
             {
                 var numStr = randMembers[i].ToString();
                 var numLength = numStr.Length;
-                var rand = new System.Random();
+                var rand = new Random();
                 var numPosition = rand.Next(0, numLength - 1);
                 validateNums[i] = int.Parse(numStr.Substring(numPosition, 1));
             }
@@ -80,7 +80,7 @@ namespace Wen.Helpers.Common.Http
             try
             {
                 //生成随机生成器
-                var random = new System.Random();
+                var random = new Random();
                 //清空图片背景色
                 g.Clear(Color.White);
                 //画图片的干扰线
@@ -150,7 +150,7 @@ namespace Wen.Helpers.Common.Http
             try
             {
                 //生成随机生成器
-                var random = new System.Random();
+                var random = new Random();
                 //清空图片背景色
                 g.Clear(Color.White);
                 //画图片的干扰线

@@ -1,4 +1,4 @@
-﻿#region
+﻿#region namespaces
 
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -24,10 +24,16 @@ namespace Wen.Helpers.Common.Text
             var words = Regex.Split(content, @"\W+");
 
             foreach (var word in words)
+            {
                 if (!dict.ContainsKey(word))
+                {
                     dict[word] = 1;
+                }
                 else
+                {
                     dict[word]++;
+                }
+            }
 
             return dict;
         }

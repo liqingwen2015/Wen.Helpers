@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region namespaces
+
+using System;
 using System.Collections.Generic;
+
+#endregion
 
 namespace Wen.Helpers.Common.Extend
 {

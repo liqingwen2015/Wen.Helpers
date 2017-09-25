@@ -1,9 +1,16 @@
-﻿using System.Collections.Generic;
+﻿#region namespaces
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+#endregion
+
 namespace Wen.Helpers.Common.Performance
 {
+    /// <summary>
+    /// 性能计数器助手
+    /// </summary>
     public static class PerformanceCounterHelper
     {
         /// <summary>
@@ -15,7 +22,7 @@ namespace Wen.Helpers.Common.Performance
         ///“Server”（服务器）、“System”（系统）和“Thread”（线程）等类别
         /// </remarks>
         /// <returns></returns>
-        public static IList<string> GetPerformanceCounterCategoryNames()
+        public static IEnumerable<string> GetPerformanceCounterCategoryNames()
         {
             return PerformanceCounterCategory.GetCategories().Select(x => x.CategoryName).ToList();
         }

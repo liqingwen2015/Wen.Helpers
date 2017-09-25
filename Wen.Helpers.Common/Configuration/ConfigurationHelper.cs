@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region namespaces
+
+using System;
 using System.Configuration;
+
+#endregion
 
 namespace Wen.Helpers.Common.Configuration
 {
@@ -8,9 +12,7 @@ namespace Wen.Helpers.Common.Configuration
         public static string GetAppSettingValue(string keyName)
         {
             if (string.IsNullOrEmpty(keyName))
-            {
                 throw new ArgumentException();
-            }
 
             return ConfigurationManager.AppSettings[keyName];
         }

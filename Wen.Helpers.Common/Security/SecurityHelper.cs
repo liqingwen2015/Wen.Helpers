@@ -1,4 +1,4 @@
-﻿#region
+﻿#region namespaces
 
 using System;
 using System.IO;
@@ -238,9 +238,7 @@ namespace Wen.Helpers.Common.Security
         public static string HmacSha256Encrypt(string input, string key, Encoding encoding = null)
         {
             if (encoding == null)
-            {
                 encoding = DefaultEncoding;
-            }
 
             return HashEncrypt(new HMACSHA256(encoding.GetBytes(key)), input, encoding);
         }

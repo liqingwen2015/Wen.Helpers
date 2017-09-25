@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region namespaces
+
+using Newtonsoft.Json;
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using Wen.Helpers.Common.Security;
+
+#endregion
 
 namespace Wen.Helpers.Common.Extend
 {
