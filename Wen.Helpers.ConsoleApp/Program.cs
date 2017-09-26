@@ -1,21 +1,17 @@
-﻿
+﻿#region namespaces
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Wen.Helpers.Common;
-using Wen.Helpers.Common.Extend;
-using Wen.Helpers.Common.Http;
-using Wen.Helpers.Common.Npoi;
+using Wen.Helpers.Core.Extend;
+using Wen.Helpers.Core.Http;
+
+#endregion
 
 namespace Wen.Helpers.ConsoleApp
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             TestApi();
 

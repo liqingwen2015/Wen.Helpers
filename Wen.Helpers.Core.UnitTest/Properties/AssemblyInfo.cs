@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Wen.Helpers.ConsoleApp")]
+[assembly: AssemblyTitle("Wen.Helpers.Common.UnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Wen.Helpers.ConsoleApp")]
+[assembly: AssemblyProduct("Wen.Helpers.Common.UnitTest")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("64121892-0e3e-4aa7-9578-351242e4abdb")]
+[assembly: Guid("e0957d9b-b32c-4072-aba3-6fb20390320f")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

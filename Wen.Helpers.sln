@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.Common", "Wen.Helpers.Common\Wen.Helpers.Common.csproj", "{A941262E-F4B4-4AB5-ABE5-317F3164E78A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.Core", "Wen.Helpers.Core\Wen.Helpers.Core.csproj", "{A941262E-F4B4-4AB5-ABE5-317F3164E78A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.ConsoleApp", "Wen.Helpers.ConsoleApp\Wen.Helpers.ConsoleApp.csproj", "{64121892-0E3E-4AA7-9578-351242E4ABDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.Common.UnitTest", "Wen.Helpers.Common.UnitTest\Wen.Helpers.Common.UnitTest.csproj", "{E0957D9B-B32C-4072-ABA3-6FB20390320F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wen.Helpers.Core.UnitTest", "Wen.Helpers.Core.UnitTest\Wen.Helpers.Core.UnitTest.csproj", "{E0957D9B-B32C-4072-ABA3-6FB20390320F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3557892-BB9B-404C-9642-48777BF093D2}
 	EndGlobalSection
 EndGlobal

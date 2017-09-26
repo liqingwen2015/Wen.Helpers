@@ -65,9 +65,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wen.Helpers.Common\Wen.Helpers.Common.csproj">
+    <ProjectReference Include="..\Wen.Helpers.Core\Wen.Helpers.Core.csproj">
       <Project>{a941262e-f4b4-4ab5-abe5-317f3164e78a}</Project>
-      <Name>Wen.Helpers.Common</Name>
+      <Name>Wen.Helpers.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
