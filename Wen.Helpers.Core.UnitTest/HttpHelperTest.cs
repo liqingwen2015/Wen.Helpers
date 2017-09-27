@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web;
-using Wen.Helpers.Core.Http;
+using Wen.Helpers.Http;
 
 #endregion
 

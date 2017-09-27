@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using Wen.Helpers.Core.Security;
+using Wen.Helpers.Security;
 
 #endregion
 
-namespace Wen.Helpers.Core.Extend
+namespace Wen.Helpers.Extend
 {
     /// <summary>
     /// 字符串扩展方法

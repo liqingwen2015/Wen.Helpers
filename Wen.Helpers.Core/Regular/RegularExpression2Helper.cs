@@ -5,11 +5,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-using Wen.Helpers.Core.Extend;
+using Wen.Helpers.Extend;
 
 #endregion
 
-namespace Wen.Helpers.Core.Regular
+namespace Wen.Helpers.Regular
 {
     /// <summary>
     /// 正则表达式助手

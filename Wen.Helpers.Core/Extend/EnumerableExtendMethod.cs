@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace Wen.Helpers.Core.Extend
+namespace Wen.Helpers.Extend
 {
     /// <summary>
     /// 可枚举类型扩展方法

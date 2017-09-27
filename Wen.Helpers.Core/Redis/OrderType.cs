@@ -1,4 +1,4 @@
-﻿namespace Wen.Helpers.Core.Redis
+﻿namespace Wen.Helpers.Redis
 {
     /// <summary>
     /// Redis 排序类型

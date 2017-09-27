@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Wen.Helpers.Core.Computer;
+using Wen.Helpers.Computer;
 
 #endregion
 

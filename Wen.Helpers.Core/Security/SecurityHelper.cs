@@ -7,7 +7,7 @@ using System.Text;
 
 #endregion
 
-namespace Wen.Helpers.Core.Security
+namespace Wen.Helpers.Security
 {
     /// <summary>
     /// 安全助手

@@ -3,11 +3,11 @@
 using System;
 using System.Linq;
 using System.Management;
-using Wen.Helpers.Core.Computer.Config;
+using Wen.Helpers.Computer.Config;
 
 #endregion
 
-namespace Wen.Helpers.Core.Computer
+namespace Wen.Helpers.Computer
 {
     /// <summary>
     /// 计算机信息助手类

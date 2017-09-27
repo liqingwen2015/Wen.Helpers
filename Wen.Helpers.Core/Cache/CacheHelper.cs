@@ -6,7 +6,7 @@ using System.Web.Caching;
 
 #endregion
 
-namespace Wen.Helpers.Core.Cache
+namespace Wen.Helpers.Cache
 {
     /// <summary>
     /// 缓存助手

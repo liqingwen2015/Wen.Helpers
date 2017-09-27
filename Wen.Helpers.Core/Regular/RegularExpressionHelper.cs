@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 #endregion
 
-namespace Wen.Helpers.Core.Regular
+namespace Wen.Helpers.Regular
 {
     /// <summary>
     /// 正则表达式助手

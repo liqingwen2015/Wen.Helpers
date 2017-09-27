@@ -1,4 +1,4 @@
-﻿namespace Wen.Helpers.Core.Computer.Config
+﻿namespace Wen.Helpers.Computer.Config
 {
     public static class ManagementBaseObjectPropertyName
     {

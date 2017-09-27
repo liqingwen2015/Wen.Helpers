@@ -7,8 +7,8 @@
     <ProjectGuid>{A941262E-F4B4-4AB5-ABE5-317F3164E78A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wen.Helpers.Core</RootNamespace>
-    <AssemblyName>Wen.Helpers.Core</AssemblyName>
+    <RootNamespace>Wen.Helpers</RootNamespace>
+    <AssemblyName>Wen.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -99,7 +99,7 @@
     <Compile Include="Computer\Config\WmiPath.cs" />
     <Compile Include="Configuration\ConfigurationHelper.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
-    <Compile Include="Email\EmailHelper.cs" />
+    <Compile Include="Email\EmailSender.cs" />
     <Compile Include="Extend\EnumerableExtendMethod.cs" />
     <Compile Include="Extend\StringExtendMethod.cs" />
     <Compile Include="Http\HttpHelper.cs" />

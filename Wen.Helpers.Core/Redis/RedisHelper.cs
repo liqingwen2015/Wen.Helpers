@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace Wen.Helpers.Core.Redis
+namespace Wen.Helpers.Redis
 {
     /// <summary>
     /// Redis 助手

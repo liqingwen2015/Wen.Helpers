@@ -5,7 +5,7 @@ using System.Web;
 
 #endregion
 
-namespace Wen.Helpers.Core.Cookie
+namespace Wen.Helpers.Cookie
 {
     /// <summary>
     /// Cookie 助手

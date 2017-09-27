@@ -10,7 +10,7 @@ using System.Web;
 
 #endregion
 
-namespace Wen.Helpers.Core.Http
+namespace Wen.Helpers.Http
 {
     /// <summary>
     /// Http 助手

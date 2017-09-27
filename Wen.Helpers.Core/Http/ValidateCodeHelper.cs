@@ -9,7 +9,7 @@ using System.Web;
 
 #endregion
 
-namespace Wen.Helpers.Core.Http
+namespace Wen.Helpers.Http
 {
     /// <summary>
     /// 验证码助手

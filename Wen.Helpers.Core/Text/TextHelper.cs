@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 #endregion
 
-namespace Wen.Helpers.Core.Text
+namespace Wen.Helpers.Text
 {
     /// <summary>
     /// 文本助手

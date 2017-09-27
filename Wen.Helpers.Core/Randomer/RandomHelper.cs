@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Wen.Helpers.Core.Randomer
+namespace Wen.Helpers.Randomer
 {
     /// <summary>
     /// 随机数助手

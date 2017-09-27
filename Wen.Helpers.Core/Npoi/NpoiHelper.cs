@@ -10,7 +10,7 @@ using System.Reflection;
 
 #endregion
 
-namespace Wen.Helpers.Core.Npoi
+namespace Wen.Helpers.Npoi
 {
     /// <summary>
     /// Npoi 助手

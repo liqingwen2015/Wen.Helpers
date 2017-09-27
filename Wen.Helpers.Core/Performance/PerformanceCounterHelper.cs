@@ -6,7 +6,7 @@ using System.Linq;
 
 #endregion
 
-namespace Wen.Helpers.Core.Performance
+namespace Wen.Helpers.Performance
 {
     /// <summary>
     /// 性能计数器助手

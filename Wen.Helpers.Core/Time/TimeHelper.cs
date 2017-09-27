@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Wen.Helpers.Core.Time
+namespace Wen.Helpers.Time
 {
     /// <summary>
     /// 时间助手

@@ -5,7 +5,7 @@ using System.Configuration;
 
 #endregion
 
-namespace Wen.Helpers.Core.Configuration
+namespace Wen.Helpers.Configuration
 {
     public static class ConfigurationHelper
     {

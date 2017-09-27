@@ -7,7 +7,7 @@ using System.Data.SQLite;
 
 #endregion
 
-namespace Wen.Helpers.Core.Db
+namespace Wen.Helpers.Db
 {
     /// <summary>
     /// SQLite 助手

@@ -2,8 +2,8 @@
 
 using System;
 using System.Threading.Tasks;
-using Wen.Helpers.Core.Extend;
-using Wen.Helpers.Core.Http;
+using Wen.Helpers.Extend;
+using Wen.Helpers.Http;
 
 #endregion
 

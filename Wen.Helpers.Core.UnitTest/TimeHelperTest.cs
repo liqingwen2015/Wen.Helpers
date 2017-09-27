@@ -2,8 +2,8 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Wen.Helpers.Core.Security;
-using Wen.Helpers.Core.Time;
+using Wen.Helpers.Security;
+using Wen.Helpers.Time;
 
 #endregion
 
