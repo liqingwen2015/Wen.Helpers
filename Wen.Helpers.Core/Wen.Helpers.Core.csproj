@@ -45,6 +45,9 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +107,8 @@
     <Compile Include="Extend\StringExtendMethod.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="Http\ValidateCodeHelper.cs" />
+    <Compile Include="Log\SuperLogger.cs" />
+    <Compile Include="Log\SuperLogLevel.cs" />
     <Compile Include="Npoi\NpoiHelper.cs" />
     <Compile Include="Performance\PerformanceCounterHelper.cs" />
     <Compile Include="Redis\OrderType.cs" />
