@@ -4,8 +4,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,55 +12,35 @@ namespace Wen.Helpers.Log
     /// <summary>
     /// 超级日志管理器
     /// </summary>
-    public class SuperLogger
+    public static class SuperLogger
     {
         /// <summary>
         /// 日志队列
         /// </summary>
-        private static readonly ConcurrentQueue<KeyValuePair<SuperLogLevel, string>> LogQueue;
+        private static readonly ConcurrentQueue<KeyValuePair<SuperLogLevel, string>> LogQueue =
+            new ConcurrentQueue<KeyValuePair<SuperLogLevel, string>>();
 
         /// <summary>
         /// 信号
         /// </summary>
-        private static readonly ManualResetEvent Semaphore;
+        private static readonly ManualResetEvent Semaphore = new ManualResetEvent(false);
 
         /// <summary>
         /// 日志
         /// </summary>
-        private static readonly ILog Log;
-
-        /// <summary>
-        /// 日志
-        /// </summary>
-        private static readonly SuperLogger SuperLoggerInstance = new SuperLogger();
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         static SuperLogger()
         {
             try
             {
-                var configFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config"));
-                if (!configFile.Exists)
-                {
-                    throw new Exception("未配置log4net配置文件！");
-                }
-
-                // 设置日志配置文件路径
-                XmlConfigurator.Configure(configFile);
-
-                LogQueue = new ConcurrentQueue<KeyValuePair<SuperLogLevel, string>>();
-                Semaphore = new ManualResetEvent(false);
-                Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+                Init();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
-        }
-
-        private SuperLogger()
-        {
 
         }
 
@@ -202,7 +180,14 @@ namespace Wen.Helpers.Log
 
         private static void Init()
         {
+            var configFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config"));
+            if (!configFile.Exists)
+            {
+                throw new Exception("未配置log4net配置文件！");
+            }
 
+            // 设置日志配置文件路径
+            XmlConfigurator.Configure(configFile);
         }
     }
 }

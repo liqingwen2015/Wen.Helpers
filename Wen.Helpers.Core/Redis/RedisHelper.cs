@@ -1068,7 +1068,7 @@ namespace Wen.Helpers.Redis
         /// <returns></returns>
         private static string AddKeyPrefix(string key)
         {
-            return $"{DefaultKey}:{key}";
+            return DefaultKey + ":" + key;
         }
 
         /// <summary>

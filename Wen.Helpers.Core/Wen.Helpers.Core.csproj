@@ -105,6 +105,7 @@
     <Compile Include="Email\EmailSender.cs" />
     <Compile Include="Extend\EnumerableExtendMethod.cs" />
     <Compile Include="Extend\StringExtendMethod.cs" />
+    <Compile Include="Document\CsvHelper.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="Http\ValidateCodeHelper.cs" />
     <Compile Include="Log\SuperLogger.cs" />
