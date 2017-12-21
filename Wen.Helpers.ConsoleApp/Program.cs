@@ -1,9 +1,6 @@
 ﻿#region namespaces
 
 using System;
-using System.Threading.Tasks;
-using Wen.Helpers.Extend;
-using Wen.Helpers.Http;
 using Wen.Helpers.Log;
 
 #endregion

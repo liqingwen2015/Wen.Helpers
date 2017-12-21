@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Wen.Helpers.Extend
+namespace Wen.Helpers.ExtendMethod
 {
     /// <summary>
     /// 泛型扩展方法

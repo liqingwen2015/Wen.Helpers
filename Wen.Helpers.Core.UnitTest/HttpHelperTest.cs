@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web;
-using Wen.Helpers.Extend;
+using Wen.Helpers.ExtendMethod;
 using Wen.Helpers.Http;
 
 #endregion

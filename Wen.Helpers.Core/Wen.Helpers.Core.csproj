@@ -105,10 +105,11 @@
     <Compile Include="Db\Attributes\DbColumnAttribute.cs" />
     <Compile Include="Db\Attributes\DbTableAttribute.cs" />
     <Compile Include="Email\EmailSender.cs" />
-    <Compile Include="Extend\EnumerableExtendMethod.cs" />
-    <Compile Include="Extend\GenericExtendMethod.cs" />
-    <Compile Include="Extend\ObjectExtendMethod.cs" />
-    <Compile Include="Extend\StringExtendMethod.cs" />
+    <Compile Include="ExtendMethod\EnumerableExtendMethod.cs" />
+    <Compile Include="ExtendMethod\GenericExtendMethod.cs" />
+    <Compile Include="ExtendMethod\ObjectExtendMethod.cs" />
+    <Compile Include="ExtendMethod\Partial\StringExtendMethod.cs" />
+    <Compile Include="ExtendMethod\StringExtendMethod.cs" />
     <Compile Include="Document\CsvHelper.cs" />
     <Compile Include="Http\HttpHelper.cs" />
     <Compile Include="Http\ValidateCodeHelper.cs" />
