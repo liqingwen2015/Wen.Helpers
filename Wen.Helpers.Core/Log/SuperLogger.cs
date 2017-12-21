@@ -89,6 +89,9 @@ namespace Wen.Helpers.Log
                         case SuperLogLevel.Fatal:
                             Log.Fatal(keyValuePairs.Value);
                             break;
+                        default:
+                            Log.Info(keyValuePairs.Value);
+                            break;
                     }
                 }
 
@@ -101,8 +104,7 @@ namespace Wen.Helpers.Log
         /// <summary>
         /// 调试
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="ex"></param>
+        /// <param name="message"></param>
         public static void Debug(string message)
         {
             EnqueueMessage(message, SuperLogLevel.Debug);
