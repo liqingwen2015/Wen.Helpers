@@ -13,7 +13,7 @@ namespace Wen.Helpers.ExtendMethod
         /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static string ToJsonString<T>(this T self)
+        public static string ToJson<T>(this T self)
         {
             return JsonConvert.SerializeObject(self);
         }

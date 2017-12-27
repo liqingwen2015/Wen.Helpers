@@ -23,5 +23,17 @@ namespace Wen.Helpers.ExtendMethod
             foreach (var item in sequence)
                 action(item);
         }
+
+        /// <summary>
+        /// 串联集合的成员，其中在每个成员之间使用指定的分隔符
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static string Join<T>(this IEnumerable<T> data, string separator)
+        {
+            return string.Join(separator, data);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Wen.Helpers.ExtendMethod
     public static partial class StringExtendMethod
     {
         /// <summary>
-        /// 用指定的 string 对象来与自身进行比较，判断是否具有相同值（忽略大小写）
+        /// 是否相等，用指定的 string 对象来与自身进行比较，判断是否具有相同值（忽略大小写）
         /// </summary>
         /// <param name="self">要比较的字符串</param>
         /// <param name="value">待比较的字符串</param>
@@ -22,6 +22,17 @@ namespace Wen.Helpers.ExtendMethod
         public static bool IsEqual(this string self, string value)
         {
             return string.Equals(self, value, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// 是否不等，用指定的 string 对象来与自身进行比较，判断是否具有相同值（忽略大小写）
+        /// </summary>
+        /// <param name="self">要比较的字符串</param>
+        /// <param name="value">待比较的字符串</param>
+        /// <returns></returns>
+        public static bool IsNotEqual(this string self, string value)
+        {
+            return !self.IsEqual(value);
         }
 
         /// <summary>
@@ -75,8 +86,17 @@ namespace Wen.Helpers.ExtendMethod
         /// <returns></returns>
         public static bool IsNullOrEmpty(this string self)
         {
-            return !string.IsNullOrEmpty(self);
+            return string.IsNullOrEmpty(self);
         }
 
+        /// <summary>
+        /// 是否不为空或 null 字符串
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
+        public static bool IsNotNullOrEmpty(this string self)
+        {
+            return !self.IsNullOrEmpty();
+        }
     }
 }
