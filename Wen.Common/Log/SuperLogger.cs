@@ -1,12 +1,12 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using log4net;
-using log4net.Config;
 
 namespace Wen.Common.Log
 {
@@ -33,29 +33,15 @@ namespace Wen.Common.Log
 
         static SuperLogger()
         {
-            try
-            {
-                Init();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            Init();
         }
 
         /// <summary>
-        /// 另一个线程记录日志，只在程序初始化时调用一次
+        /// 注册（启动一个任务记录日志）【应只在程序初始化时调用一次】
         /// </summary>
         public static void Register()
         {
             Task.Factory.StartNew(WriteLog);
-
-            //Thread t = new Thread(new ThreadStart(WriteLog))
-            //{
-            //    IsBackground = false
-            //};
-            //t.Start();
         }
 
         /// <summary>
@@ -180,7 +166,8 @@ namespace Wen.Common.Log
 
         private static void Init()
         {
-            var configFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config"));
+            var configFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Configs/log4net.config"));
+
             if (!configFile.Exists)
                 throw new Exception("未配置log4net配置文件！");
 

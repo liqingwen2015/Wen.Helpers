@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Wen.Common.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -88,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Computer\ComputerInfoHelper.cs" />
-    <Compile Include="Computer\Config\ManagementBaseObjectPropertyName.cs" />
+    <Compile Include="Computer\Config\ManagementObjectPropertyName.cs" />
     <Compile Include="Computer\Config\WmiPath.cs" />
     <Compile Include="Configuration\ConfigurationHelper.cs" />
     <Compile Include="Db\Attributes\DbColumnAttribute.cs" />
@@ -97,18 +98,19 @@
     <Compile Include="Db\SqLiteHelper.cs" />
     <Compile Include="Document\CsvHelper.cs" />
     <Compile Include="Email\EmailSender.cs" />
-    <Compile Include="Extension\EnumerableExtendMethods.cs" />
-    <Compile Include="Extension\GenericExtendMethods.cs" />
-    <Compile Include="Extension\ObjectExtendMethods.cs" />
-    <Compile Include="Extension\Partial\StringExtendMethods.cs" />
-    <Compile Include="Extension\StringExtendMethods.cs" />
+    <Compile Include="Extensions\Enums\HmacEncryptType.cs" />
+    <Compile Include="Extensions\Enums\ShaEncryptType.cs" />
+    <Compile Include="Extensions\EnumerableExtendMethods.cs" />
+    <Compile Include="Extensions\GenericExtendMethods.cs" />
+    <Compile Include="Extensions\ObjectExtendMethods.cs" />
+    <Compile Include="Extensions\Partial\StringExtendMethods.cs" />
+    <Compile Include="Extensions\StringExtendMethods.cs" />
     <Compile Include="Log\SuperLogger.cs" />
     <Compile Include="Log\SuperLogLevel.cs" />
     <Compile Include="Document\ExcelHelper.cs" />
     <Compile Include="Performance\PerformanceCounterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomer\RandomGenerator.cs" />
-    <Compile Include="Randomer\VerifyCodeGenerator.cs" />
     <Compile Include="Redis\OrderType.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
     <Compile Include="Regular\RegularExpression2Helper.cs" />

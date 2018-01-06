@@ -12,20 +12,23 @@ namespace Wen.Common.Web.Mvc.VerifyCode
     public class VerifyCodeHelper
     {
         /// <summary>
-        /// 生成验证码
+        /// 创建验证码图片流
         /// </summary>
         /// <param name="codeText"></param>
         /// <param name="codeMaxWidth"></param>
         /// <param name="codeMaxHeight"></param>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        public static byte[] GenerateVerifyCode(string codeText, int codeMaxWidth = 80, int codeMaxHeight = 30, int fontSize = 16)
+        public static byte[] CreateVerifyCodeStream(string codeText, int codeMaxWidth = 80, int codeMaxHeight = 30, int fontSize = 16)
         {
             //颜色列表，用于验证码、噪线、噪点 
-            Color[] colors = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
+            Color[] colors =
+            {
+                Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue
+            };
 
             //字体列表，用于验证码 
-            string[] fonts = { "Times New Roman" };
+            string[] fonts = { "Times New Roman", "Calibri", "Microsoft YaHei UI", "Arial" };
 
             //创建画布
             var bmp = new Bitmap(codeMaxWidth, codeMaxHeight);
@@ -38,12 +41,14 @@ namespace Wen.Common.Web.Mvc.VerifyCode
             g.Clear(Color.White);
 
             //画噪线 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 5; i++)
             {
-                var x = RandomGenerator.Next(codeMaxWidth);
-                var y = RandomGenerator.Next(codeMaxHeight);
+                var x1 = RandomGenerator.Next(codeMaxWidth);
+                var y1 = RandomGenerator.Next(codeMaxHeight);
+                var x2 = RandomGenerator.Next(codeMaxWidth);
+                var y2 = RandomGenerator.Next(codeMaxHeight);
 
-                g.DrawLine(pen, x, y, x, y);
+                g.DrawLine(pen, x1, y1, x2, y2);
             }
 
             //画验证码字符串 

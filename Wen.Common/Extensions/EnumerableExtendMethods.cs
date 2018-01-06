@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 #endregion
 
-namespace Wen.Common.Extension
+namespace Wen.Common.Extensions
 {
     /// <summary>
     /// 可枚举类型扩展方法
@@ -31,7 +31,7 @@ namespace Wen.Common.Extension
         /// <param name="data"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static string Join<T>(this IEnumerable<T> data, string separator)
+        public static string ToJoinInString<T>(this IEnumerable<T> data, string separator)
         {
             return string.Join(separator, data);
         }

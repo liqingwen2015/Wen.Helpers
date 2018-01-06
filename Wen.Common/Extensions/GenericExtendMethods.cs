@@ -1,18 +1,19 @@
 ﻿using Newtonsoft.Json;
 
-namespace Wen.Common.Extension
+namespace Wen.Common.Extensions
 {
     /// <summary>
-    /// 对象扩展方法
+    /// 泛型扩展方法
     /// </summary>
-    public static class ObjectExtendMethods
+    public static class GenericExtendMethods
     {
         /// <summary>
         /// 转换成 Json 字符串
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
         /// <returns></returns>
-        public static string ToJson(this object self)
+        public static string ToJson<T>(this T self)
         {
             return JsonConvert.SerializeObject(self);
         }

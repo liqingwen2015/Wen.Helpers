@@ -1,5 +1,8 @@
 ﻿namespace Wen.Helpers.Computer.Config
 {
+    /// <summary>
+    /// WMI 路径
+    /// </summary>
     public static class WmiPath
     {
         /// <summary>

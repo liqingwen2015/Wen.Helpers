@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Wen.Common.Web.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,10 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\CacheHelper.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="Http\HttpHelper.cs" />
-    <Compile Include="Http\ValidateCodeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

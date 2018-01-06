@@ -22,7 +22,7 @@ namespace Wen.Common.Performance
         ///“Server”（服务器）、“System”（系统）和“Thread”（线程）等类别
         /// </remarks>
         /// <returns></returns>
-        public static IEnumerable<string> GetPerformanceCounterCategoryNames()
+        public static List<string> GetPerformanceCounterCategoryNames()
         {
             return PerformanceCounterCategory.GetCategories().Select(x => x.CategoryName).ToList();
         }

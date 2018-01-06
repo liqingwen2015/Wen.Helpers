@@ -1,6 +1,9 @@
 ﻿namespace Wen.Helpers.Computer.Config
 {
-    public static class ManagementBaseObjectPropertyName
+    /// <summary>
+    /// 管理对象属性名
+    /// </summary>
+    public static class ManagementObjectPropertyName
     {
         /// <summary>
         /// 名称

@@ -14,7 +14,7 @@ using Wen.Common.Db.Attributes;
 namespace Wen.Common.Db
 {
     /// <summary>
-    /// SqlHelper
+    /// Sql 助手
     /// </summary>
     public abstract class SqlHelper
     {
@@ -226,7 +226,7 @@ namespace Wen.Common.Db
         private static string GenerateTableName(Type type)
         {
             var firstTableAttribute = type.GetCustomAttributes(typeof(DbTableAttribute), false).FirstOrDefault();
-            var tableAttribute = (DbTableAttribute) firstTableAttribute;
+            var tableAttribute = (DbTableAttribute)firstTableAttribute;
 
             return firstTableAttribute == null ? type.Name : tableAttribute.Name;
         }
@@ -243,7 +243,7 @@ namespace Wen.Common.Db
             if (firstColumnAttribute == null)
                 return new DataColumn(property.Name, property.PropertyType);
 
-            var columnAttribute = (DbColumnAttribute) firstColumnAttribute;
+            var columnAttribute = (DbColumnAttribute)firstColumnAttribute;
             return new DataColumn(columnAttribute.Name, property.PropertyType);
         }
 

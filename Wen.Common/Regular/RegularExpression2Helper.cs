@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Wen.Common.Extension;
+using Wen.Common.Extensions;
 
 #endregion
 
