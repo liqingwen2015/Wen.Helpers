@@ -15,11 +15,12 @@ namespace Wen.Common.Web.Mvc.VerifyCode
         /// 创建验证码图片流
         /// </summary>
         /// <param name="codeText"></param>
+        /// <param name="format"></param>
         /// <param name="codeMaxWidth"></param>
         /// <param name="codeMaxHeight"></param>
         /// <param name="fontSize"></param>
         /// <returns></returns>
-        public static byte[] CreateVerifyCodeStream(string codeText, int codeMaxWidth = 80, int codeMaxHeight = 30, int fontSize = 16)
+        public static byte[] CreateVerifyCodeStream(string codeText, ImageFormat format, int codeMaxWidth = 80, int codeMaxHeight = 30, int fontSize = 16)
         {
             //颜色列表，用于验证码、噪线、噪点 
             Color[] colors =
@@ -62,7 +63,7 @@ namespace Wen.Common.Web.Mvc.VerifyCode
 
             try
             {
-                bmp.Save(ms, ImageFormat.Png);
+                bmp.Save(ms, format);
                 return ms.ToArray();
             }
             catch (Exception)

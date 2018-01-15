@@ -61,7 +61,7 @@ namespace Wen.Common.Extension
         /// <param name="type">SHA 加密类型</param>
         /// <param name="encoding">编码，为 null 时取默认值</param>
         /// <returns></returns>
-        public static string ToHmac(this string self, string key, HmacEncryptType type = HmacEncryptType.Sha1, Encoding encoding = null)
+        public static string ToHmac(this string self, string key, HmacEncryptType type = HmacEncryptType.Md5, Encoding encoding = null)
         {
             switch (type)
             {

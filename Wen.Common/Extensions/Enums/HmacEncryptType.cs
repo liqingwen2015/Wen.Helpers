@@ -5,11 +5,12 @@
     /// </summary>
     public enum HmacEncryptType
     {
-        Sha1 = 1,
-        Sha224 = 2,
-        Sha256 = 3,
-        Sha384 = 4,
-        Sha512 = 5,
-        Md5 = 6
+        Md5 = 1,
+        Sha1 = 2,
+        Sha224 = 3,
+        Sha256 = 4,
+        Sha384 = 5,
+        Sha512 = 6,
+        
     }
 }
